@@ -202,7 +202,7 @@ python scripts/04_extract_seed_timeseries.py \
   --standardize
 ```
 
-Supported seed labels are `left_anterior_insula`, `right_anterior_insula`, and `dacc_amcc`. ROI masks must be binary 3D NIfTI images in the same space, shape, and affine as the 4D BOLD image. This step writes a lightweight TSV and validates the extracted time-series length against `--n-scans` and the design matrix row count when provided. Do not commit BOLD images, ROI NIfTI masks, or generated imaging outputs.
+Supported seed labels are `left_anterior_insula`, `right_anterior_insula`, and `dacc_amcc`. ROI masks must be binary 3D NIfTI images in the same space, shape, and affine as the 4D BOLD image. See [docs/seed_masks.md](docs/seed_masks.md) for mask preparation guidance. This step writes a lightweight TSV and validates the extracted time-series length against `--n-scans` and the design matrix row count when provided. Do not commit BOLD images, ROI NIfTI masks, or generated imaging outputs.
 
 Run the synthetic seed extraction test/example with:
 
