@@ -216,3 +216,49 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Neuroimaging data and generated analysis outputs
+data/
+rawdata/
+sourcedata/
+sub-*/
+derivatives/
+results/
+scratch/
+work/
+tmp/
+
+# BIDS/OpenNeuro and fMRIPrep downloads
+ds006243/
+fmriprep/
+.datalad/
+.gitmodules
+
+# Neuroimaging file formats and large binary outputs
+*.nii
+*.nii.gz
+*.gii
+*.gii.gz
+*.func.gii
+*.dtseries.nii
+*.dscalar.nii
+*.dlabel.nii
+*.mgz
+*.mgh
+*.trk
+*.tck
+*.h5
+*.hdf5
+*.mat
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+
+# Generated reports, maps, and compressed archives
+*.html
+*.zip
+*.tar
+*.tar.gz
+*.tgz
