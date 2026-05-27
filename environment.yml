@@ -1,0 +1,14 @@
+name: lkm-connectivity
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - pybids
+  - nilearn
+  - nibabel
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
+  - statsmodels
+  - pip

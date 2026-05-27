@@ -1,0 +1,8 @@
+pybids
+nilearn
+nibabel
+pandas
+numpy
+scipy
+matplotlib
+statsmodels

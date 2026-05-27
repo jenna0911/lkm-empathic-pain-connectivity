@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lkm-connectivity"
+version = "0.1.0"
+description = "Task-based functional connectivity reanalysis of OpenNeuro ds006243."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "jenna0911" }
+]
+dependencies = [
+  "pybids",
+  "nilearn",
+  "nibabel",
+  "pandas",
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "statsmodels"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
