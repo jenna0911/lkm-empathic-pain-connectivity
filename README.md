@@ -1,4 +1,4 @@
-# Does Loving-Kindness Meditation Modulate Empathy Network Connectivity During Anticipation and Observation of Others' Pain?
+# Brain Connectivity During Observed Fear Anticipation and Loneliness Reduction After Meditation Training
 
 This repository contains a public, reproducible scaffold for a task-based functional connectivity reanalysis of OpenNeuro dataset `ds006243`.
 
