@@ -61,6 +61,33 @@ class BatchRunnerTests(unittest.TestCase):
             self.assertEqual(runs[0].run_prefix, "sub-001_task-empathicpain_run-1")
             self.assertTrue(str(runs[0].prepared_events_tsv).endswith("_desc-gppi_events.tsv"))
 
+    def test_discovers_ds006243_derivative_runs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            regressor_dir = root / "ds006243" / "events" / "sub-001" / "regressors"
+            func_dir = root / "ds006243" / "sub-001" / "func"
+            regressor_dir.mkdir(parents=True)
+            func_dir.mkdir(parents=True)
+            (regressor_dir / "sub-001_task-empathy_run-01_confounds.txt").write_text("1\t2\n", encoding="utf-8")
+            (func_dir / "sub-001_task-empathy_acq-MNI152NLin2009cAsym_rec-preproc_run-01_bold.nii.gz").write_text(
+                "placeholder\n",
+                encoding="utf-8",
+            )
+            options = PipelineOptions(
+                bids_root=root / "ds006243",
+                fmriprep_root=root / "ds006243",
+                output_root=root / "out",
+                seed_mask_dir=root / "masks",
+                dry_run=True,
+            )
+
+            runs = discover_subject_runs(options, "001")
+
+            self.assertEqual(len(runs), 1)
+            self.assertEqual(runs[0].run_prefix, "sub-001_task-empathy_run-01")
+            self.assertIsNone(runs[0].events_tsv)
+            self.assertEqual(runs[0].ds006243_regressor_dir, regressor_dir)
+
     def test_discovers_seed_masks(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             mask_dir = Path(tmpdir)

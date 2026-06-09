@@ -106,6 +106,24 @@ results/
 
 These paths are intentionally ignored by Git.
 
+## Batch Runner
+
+Use the subject and all-subject batch runners to execute the full gPPI workflow
+from event preparation through first-level model fitting:
+
+```bash
+python scripts/run_subject_pipeline.py \
+  --bids-root data/ds006243 \
+  --fmriprep-root derivatives/fmriprep \
+  --output-root derivatives/lkm_connectivity \
+  --participant-label sub-001 \
+  --seed-mask-dir masks \
+  --dry-run
+```
+
+See [docs/running_pipeline.md](docs/running_pipeline.md) for the full
+one-subject, all-subject, and OpenNeuro ds006243 smoke-run workflow.
+
 ## Prepare Events
 
 After downloading `ds006243` locally, prepare collapsed event regressors for the gPPI workflow:

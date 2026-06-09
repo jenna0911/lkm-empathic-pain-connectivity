@@ -15,7 +15,7 @@ import nibabel as nib
 import pandas as pd
 
 from lkm_connectivity.confounds import extract_confounds_file
-from lkm_connectivity.events import collapse_events_for_gppi, load_events
+from lkm_connectivity.events import collapse_events_for_gppi, load_ds006243_timing_events, load_events
 from lkm_connectivity.firstlevel import MAIN_CONTRAST_NAMES, fit_first_level_gppi_from_files
 from lkm_connectivity.glm import DEFAULT_TR, make_first_level_from_files
 from lkm_connectivity.gppi import make_gppi_from_files
@@ -28,7 +28,8 @@ class RunFiles:
 
     participant_label: str
     run_prefix: str
-    events_tsv: Path
+    events_tsv: Path | None
+    ds006243_regressor_dir: Path | None
     confounds_tsv: Path
     bold_img: Path
     prepared_events_tsv: Path
@@ -62,7 +63,7 @@ def discover_subject_runs(options: PipelineOptions, participant_label: str) -> l
     subject = normalize_participant_label(participant_label)
     events_files = sorted((options.bids_root / subject / "func").glob("*_events.tsv"))
     if not events_files:
-        raise FileNotFoundError(f"No events files found for {subject} under {options.bids_root}")
+        return _discover_ds006243_derivative_runs(options, subject)
 
     runs = []
     for events_tsv in events_files:
@@ -82,6 +83,57 @@ def discover_subject_runs(options: PipelineOptions, participant_label: str) -> l
                 participant_label=subject,
                 run_prefix=run_prefix,
                 events_tsv=events_tsv,
+                ds006243_regressor_dir=None,
+                confounds_tsv=confounds_tsv,
+                bold_img=bold_img,
+                prepared_events_tsv=options.output_root / "events" / func_out / f"{run_prefix}_desc-gppi_events.tsv",
+                selected_confounds_tsv=options.output_root
+                / "confounds"
+                / func_out
+                / f"{run_prefix}_desc-nuisance_regressors.tsv",
+                design_matrix_tsv=options.output_root
+                / "design_matrices"
+                / func_out
+                / f"{run_prefix}_desc-design_matrix.tsv",
+            )
+        )
+    return runs
+
+
+def _discover_ds006243_derivative_runs(options: PipelineOptions, subject: str) -> list[RunFiles]:
+    """Discover runs from the ds006243 OpenNeuro derivative layout."""
+
+    regressor_dir = options.bids_root / "events" / subject / "regressors"
+    if not regressor_dir.exists():
+        raise FileNotFoundError(
+            f"No BIDS events files found for {subject} under {options.bids_root}, "
+            f"and no ds006243 regressor directory found at {regressor_dir}"
+        )
+
+    confounds_files = sorted(regressor_dir.glob(f"{subject}_task-empathy_run-*_confounds.txt"))
+    if not confounds_files:
+        raise FileNotFoundError(f"No ds006243 run confounds found in {regressor_dir}")
+
+    runs = []
+    for confounds_tsv in confounds_files:
+        run_id = _run_id_from_name(confounds_tsv.name)
+        run_prefix = f"{subject}_task-empathy_{run_id}"
+        bold_img = _find_one(
+            sorted(
+                (options.fmriprep_root / subject / "func").glob(
+                    f"{subject}_task-empathy_acq-MNI152NLin2009cAsym_rec-preproc_{run_id}_bold.nii.gz"
+                )
+            )
+            or sorted((options.fmriprep_root / subject / "func").glob(f"{subject}_task-empathy_*{run_id}_bold.nii.gz")),
+            f"MNI preprocessed BOLD image for {subject} {run_prefix}",
+        )
+        func_out = Path(subject) / "func"
+        runs.append(
+            RunFiles(
+                participant_label=subject,
+                run_prefix=run_prefix,
+                events_tsv=None,
+                ds006243_regressor_dir=regressor_dir,
                 confounds_tsv=confounds_tsv,
                 bold_img=bold_img,
                 prepared_events_tsv=options.output_root / "events" / func_out / f"{run_prefix}_desc-gppi_events.tsv",
@@ -133,7 +185,13 @@ def run_single_run(options: PipelineOptions, run_files: RunFiles) -> None:
             / f"{run_files.run_prefix}_seed-{seed_name}_desc-gppi_design.tsv"
         )
         contrasts_json = gppi_tsv.with_name(f"{run_files.run_prefix}_seed-{seed_name}_desc-gppi_contrasts.json")
-        firstlevel_dir = options.output_root / "firstlevel" / run_files.participant_label / "func" / f"seed-{seed_name}"
+        firstlevel_dir = (
+            options.output_root
+            / "firstlevel"
+            / run_files.participant_label
+            / "func"
+            / f"{run_files.run_prefix}_seed-{seed_name}"
+        )
 
         _extract_seed(options, run_files, seed_name, mask_path, seed_tsv, n_scans)
         _build_gppi(options, run_files, seed_tsv, gppi_tsv, contrasts_json)
@@ -169,8 +227,13 @@ def _prepare_events(options: PipelineOptions, run_files: RunFiles) -> None:
     _step("prepare events", [run_files.prepared_events_tsv], options)
     if not should_run([run_files.prepared_events_tsv], options.overwrite) or options.dry_run:
         return
-    events = load_events(run_files.events_tsv)
-    prepared = collapse_events_for_gppi(events)
+    if run_files.events_tsv is not None:
+        events = load_events(run_files.events_tsv)
+        prepared = collapse_events_for_gppi(events)
+    elif run_files.ds006243_regressor_dir is not None:
+        prepared = load_ds006243_timing_events(run_files.ds006243_regressor_dir)
+    else:
+        raise ValueError("Run files must include either BIDS events.tsv or a ds006243 regressor directory.")
     run_files.prepared_events_tsv.parent.mkdir(parents=True, exist_ok=True)
     prepared.to_csv(run_files.prepared_events_tsv, sep="\t", index=False)
 
@@ -284,6 +347,13 @@ def _find_one(paths: list[Path], description: str) -> Path:
     if len(paths) > 1:
         raise ValueError(f"Found multiple candidates for {description}: {paths}")
     return paths[0]
+
+
+def _run_id_from_name(filename: str) -> str:
+    match = filename.split("_task-empathy_", 1)
+    if len(match) != 2:
+        raise ValueError(f"Cannot infer run id from {filename}")
+    return match[1].split("_", 1)[0]
 
 
 def parse_args() -> PipelineOptions:

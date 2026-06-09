@@ -38,6 +38,21 @@ POST_STIMULATION_REST_REGRESSORS = (
 GPPI_REGRESSORS = ANTICIPATION_REGRESSORS + STIMULATION_REGRESSORS
 ALL_REGRESSORS = GPPI_REGRESSORS + POST_STIMULATION_REST_REGRESSORS
 
+DS006243_TIMING_TO_REGRESSOR = {
+    "selfpainanticipation": "self_fear_anticipation",
+    "selfneutralanticipation": "self_safety_anticipation",
+    "otherpainanticipation": "other_fear_anticipation",
+    "otherneutralanticipation": "other_safety_anticipation",
+    "selfpain": "self_pain_stimulation",
+    "selfnopain": "self_nopain_stimulation",
+    "otherpain": "other_pain_stimulation",
+    "othernopain": "other_nopain_stimulation",
+    "selfpainrest": "post_self_pain_rest",
+    "selfnopainrest": "post_self_nopain_rest",
+    "otherpainrest": "post_other_pain_rest",
+    "othernopainrest": "post_other_nopain_rest",
+}
+
 TEXT_COLUMNS_PRIORITY = (
     "trial_type",
     "condition",
@@ -231,6 +246,34 @@ def prepare_bids_events(
     return results
 
 
+def load_ds006243_timing_events(regressor_dir: Path, include_rest: bool = True) -> pd.DataFrame:
+    """Load ds006243 FSL-style timing files as prepared gPPI events.
+
+    OpenNeuro ds006243 is distributed as a derivative dataset and stores task
+    timing in files named ``*_timing-<condition>.txt`` under
+    ``events/<subject>/regressors``. Each file contains whitespace-separated
+    ``onset:duration`` entries. This helper maps the condition names onto the
+    collapsed gPPI regressors used by this project.
+    """
+
+    regressor_dir = Path(regressor_dir)
+    if not regressor_dir.exists():
+        raise FileNotFoundError(f"ds006243 regressor directory does not exist: {regressor_dir}")
+
+    rows = []
+    for timing_file in sorted(regressor_dir.glob("*_timing-*.txt")):
+        condition = timing_file.name.split("_timing-", 1)[1].removesuffix(".txt")
+        trial_type = DS006243_TIMING_TO_REGRESSOR.get(condition)
+        if trial_type is None or (not include_rest and trial_type in POST_STIMULATION_REST_REGRESSORS):
+            continue
+        for onset, duration in _parse_ds006243_timing_file(timing_file):
+            rows.append({"onset": onset, "duration": duration, "trial_type": trial_type})
+
+    if not rows:
+        raise ValueError(f"No ds006243 timing rows mapped to gPPI regressors in {regressor_dir}")
+    return pd.DataFrame(rows).sort_values(["onset", "duration", "trial_type"]).reset_index(drop=True)
+
+
 def make_synthetic_events() -> pd.DataFrame:
     """Return a small ds006243-like synthetic events table for examples/tests."""
 
@@ -252,6 +295,20 @@ def make_synthetic_events() -> pd.DataFrame:
             ],
         }
     )
+
+
+def _parse_ds006243_timing_file(timing_file: Path) -> list[tuple[float, float]]:
+    text = timing_file.read_text(encoding="utf-8").strip()
+    if not text:
+        return []
+
+    pairs = []
+    for token in text.split():
+        if ":" not in token:
+            raise ValueError(f"Expected onset:duration token in {timing_file}, got {token!r}")
+        onset_text, duration_text = token.split(":", 1)
+        pairs.append((float(onset_text), float(duration_text)))
+    return pairs
 
 
 def _validate_events(events: pd.DataFrame) -> None:
