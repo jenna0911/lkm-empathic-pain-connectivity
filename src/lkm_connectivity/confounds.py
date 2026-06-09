@@ -30,6 +30,7 @@ PREFIX_OPTIONAL_COLUMNS = (
     "a_comp_cor",
     "non_steady_state_outlier",
     "motion_outlier",
+    "custom_confound_",
 )
 
 DEFAULT_CONFOUND_COLUMNS = list(MOTION_PARAMETERS) + list(EXACT_OPTIONAL_COLUMNS)
@@ -50,7 +51,13 @@ class ConfoundExtractionResult:
 def load_confounds(confounds_tsv: Path) -> pd.DataFrame:
     """Load one fMRIPrep ``confounds_timeseries.tsv`` file."""
 
-    return pd.read_csv(confounds_tsv, sep="\t")
+    confounds = pd.read_csv(confounds_tsv, sep="\t")
+    if get_confound_columns(confounds) or not _looks_like_headerless_numeric(confounds):
+        return confounds
+
+    headerless = pd.read_csv(confounds_tsv, sep="\t", header=None)
+    headerless.columns = [f"custom_confound_{index:02d}" for index in range(headerless.shape[1])]
+    return headerless
 
 
 def select_confounds(confounds: pd.DataFrame) -> pd.DataFrame:
@@ -268,6 +275,25 @@ def make_synthetic_confounds(n_scans: int = 5) -> pd.DataFrame:
         "unused_signal": np.arange(n_scans),
     }
     return pd.DataFrame(data)
+
+
+def make_synthetic_headerless_confounds(n_scans: int = 5, n_columns: int = 3) -> pd.DataFrame:
+    """Return a ds006243-like numeric confound matrix without semantic names."""
+
+    return pd.DataFrame(
+        {
+            f"custom_confound_{column:02d}": np.linspace(column, column + 1, n_scans)
+            for column in range(n_columns)
+        }
+    )
+
+
+def _looks_like_headerless_numeric(confounds: pd.DataFrame) -> bool:
+    try:
+        [float(column) for column in confounds.columns]
+    except (TypeError, ValueError):
+        return False
+    return True
 
 
 def _validate_prepared_events(

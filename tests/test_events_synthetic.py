@@ -7,6 +7,7 @@ import unittest
 from lkm_connectivity.events import (
     ALL_REGRESSORS,
     collapse_events_for_gppi,
+    load_ds006243_timing_events,
     make_synthetic_events,
     prepare_bids_events,
 )
@@ -44,6 +45,24 @@ class EventPreparationTests(unittest.TestCase):
                 results[0].output.relative_to(bids_root).as_posix(),
                 "derivatives/events/sub-001/func/sub-001_task-empathicpain_desc-gppi_events.tsv",
             )
+
+    def test_loads_ds006243_timing_events(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            regressor_dir = Path(tmpdir)
+            (regressor_dir / "sub-001_task-empathy_timing-otherpainanticipation.txt").write_text(
+                "1.0:2\t5.0:3\n",
+                encoding="utf-8",
+            )
+            (regressor_dir / "sub-001_task-empathy_timing-selfnopainrest.txt").write_text(
+                "9.0:4\n",
+                encoding="utf-8",
+            )
+
+            events = load_ds006243_timing_events(regressor_dir)
+
+            self.assertEqual(len(events), 3)
+            self.assertIn("other_fear_anticipation", set(events["trial_type"]))
+            self.assertIn("post_self_nopain_rest", set(events["trial_type"]))
 
 
 if __name__ == "__main__":

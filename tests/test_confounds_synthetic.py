@@ -11,6 +11,7 @@ from lkm_connectivity.confounds import (
     MOTION_PARAMETERS,
     extract_confounds,
     extract_confounds_file,
+    load_confounds,
     make_synthetic_confounds,
     select_confounds,
 )
@@ -63,6 +64,18 @@ class ConfoundSelectionTests(unittest.TestCase):
             self.assertEqual(result.n_output_rows, 5)
             self.assertEqual(len(written), 5)
             self.assertIn("a_comp_cor_00", written.columns)
+
+    def test_loads_headerless_numeric_confounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            source = Path(tmpdir) / "sub-001_task-empathy_run-01_confounds.txt"
+            source.write_text("1\t2\t3\n4\t5\t6\n", encoding="utf-8")
+
+            confounds = load_confounds(source)
+            selected = select_confounds(confounds)
+
+            self.assertEqual(len(confounds), 2)
+            self.assertEqual(list(confounds.columns), ["custom_confound_00", "custom_confound_01", "custom_confound_02"])
+            self.assertEqual(list(selected.columns), list(confounds.columns))
 
 
 if __name__ == "__main__":
