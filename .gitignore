@@ -223,10 +223,25 @@ rawdata/
 sourcedata/
 sub-*/
 derivatives/
-results/
+results/*
+!results/README.md
+!results/*.tsv
+!results/figures/
+results/figures/*
+!results/figures/*.png
+outputs/
+figures/
+masks/
 scratch/
 work/
 tmp/
+
+# Public-safe, small results package allowed for repository sharing
+!results/
+!results/README.md
+!results/*.tsv
+!results/figures/
+!results/figures/*.png
 
 # BIDS/OpenNeuro and fMRIPrep downloads
 ds006243/
