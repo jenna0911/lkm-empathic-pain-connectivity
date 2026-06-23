@@ -5,76 +5,133 @@ OpenNeuro `ds006243`, an fMRI empathic-pain task dataset collected after
 loving-kindness meditation (LKM) or progressive muscle relaxation (PMR)
 training.
 
-The central question is:
+## Background
 
-> After training, is reduced loneliness associated with task-dependent brain
-> connectivity while participants anticipate or observe another person's pain?
+Loneliness is not only a social experience; it is also linked to how people
+process social threat, safety, and other people's distress. Meditation-based
+training may change how affective-empathy systems communicate with
+social-cognitive networks during social perception.
 
-The project focuses on individual differences in generalized
-psychophysiological interaction (gPPI) connectivity, especially communication
-between affective-empathy regions such as anterior insula and dACC/aMCC and
-social-cognitive regions such as TPJ, STS, mPFC, and PCC.
+The original ds006243 study focused on self-other multi-voxel pattern
+similarity during pain and fearful anticipation. This reanalysis asks a
+different question: whether individual changes in loneliness are related to
+task-dependent functional connectivity during an empathic-pain task.
 
-## Current Public Results
+## Gap
 
-The public results package reports exploratory full-sample group-interaction
-analyses for:
+Previous analyses tell us whether brain activity patterns during self and other
+conditions are similar. They do not directly test whether reductions in
+loneliness are associated with stronger or weaker coupling between:
+
+- affective-empathy regions, including anterior insula and dACC/aMCC
+- social-cognitive regions, including TPJ, STS, mPFC, and PCC
+
+This connectivity question matters because loneliness reduction may depend not
+only on local activity in one region, but on communication between networks that
+support affective sharing, anticipation, and social interpretation.
+
+## Research Question
+
+After training, is reduced loneliness associated with task-dependent brain
+connectivity while participants anticipate or observe another person's pain?
+
+The current public results focus on:
 
 ```text
 Other Fear Anticipation > Other Safety
 N = 54, LKM = 29, PMR = 25
 ```
 
-These analyses test whether the association between loneliness reduction
-(`T1 - T2`; positive values indicate decreased loneliness) and gPPI connectivity
-differs between LKM and PMR.
+The key exploratory model asks whether the loneliness-connectivity association
+differs between LKM and PMR:
+
+```text
+gPPI connectivity effect ~ loneliness reduction * group
+```
+
+Loneliness reduction is defined as `T1 - T2`, so positive values indicate
+decreased loneliness after training.
+
+## Hypotheses
+
+1. Greater loneliness reduction will be associated with altered
+   task-dependent connectivity between affective-empathy seeds and
+   social-cognitive target regions.
+2. The association between loneliness reduction and connectivity may differ
+   between LKM and PMR.
+3. AI-to-TPJ/STS connectivity during anticipation of another person's pain is a
+   candidate pathway linking affective-empathy processing with social-cognitive
+   interpretation.
+
+These hypotheses are treated as exploratory for the current public results
+because the ROI pairs were inspected after preliminary analyses.
+
+## Method
+
+```mermaid
+flowchart TD
+    A["OpenNeuro ds006243<br/>BIDS events + fMRIPrep BOLD"] --> B["Prepare task events<br/>anticipation, stimulation, optional rest"]
+    B --> C["Select nuisance confounds<br/>motion, FD, cosine, CompCor, outliers"]
+    C --> D["Build first-level design matrix<br/>TR = 2.5 s"]
+    D --> E["Extract seed time series<br/>AI and dACC/aMCC masks"]
+    E --> F["Build gPPI regressors<br/>seed x task condition"]
+    F --> G["Fit first-level gPPI models<br/>contrast effect maps"]
+    G --> H["Extract ROI-to-ROI effects<br/>TPJ, STS, mPFC, PCC targets"]
+    H --> I["Group interaction model<br/>loneliness reduction x group"]
+    I --> J["Public-safe summaries<br/>tables + figures only"]
+```
+
+The analysis estimates generalized psychophysiological interaction (gPPI)
+effects. A label such as `Left AI -> Right STS` means Left-AI-seeded
+task-dependent connectivity with a Right STS target ROI. It does not imply
+causal direction.
+
+## Results
+
+The public results package reports exploratory full-sample group-interaction
+analyses. No raw data, subject-level fMRI maps, BOLD time series, masks, NIfTI,
+GIFTI, CIFTI, or large derivatives are included.
 
 Important caveat: these results are exploratory and post hoc. They do not
 establish causality and require replication in an independent or preregistered
 analysis.
 
-### Key Exploratory Findings
-
-- Left-AI-seeded connectivity with Right STS showed a group-by-loneliness
-  reduction interaction: beta = +1.414, p = .005, FDR q = .029.
-- Left-AI-seeded connectivity with Right TPJ showed a similar interaction:
-  beta = +1.383, p = .017, FDR q = .050.
-- In the fitted interaction model, greater loneliness reduction was associated
-  with stronger Left AI-Right STS/TPJ gPPI connectivity in LKM and weaker
-  connectivity in PMR.
-
-`Left AI -> Right STS/TPJ` means Left-AI-seeded task-dependent connectivity
-with the target ROI. It does not imply causal direction.
-
-## Figure Guide
-
-### Left AI - Right STS Interaction
+### Left AI - Right STS
 
 ![Left AI to Right STS group interaction](results/figures/leftAI_rightSTS_group_interaction.png)
 
-This scatter plot shows the strongest exploratory interaction. The x-axis is
-loneliness reduction and the y-axis is gPPI connectivity effect for the
-Left AI-seeded Right STS target. Blue circles are LKM and red triangles are PMR.
-Separate regression lines show that the loneliness-connectivity association is
-positive in LKM and negative in PMR for this ROI pair.
+This was the strongest exploratory interaction. Greater loneliness reduction
+was associated with stronger Left AI-seeded Right STS connectivity in LKM and
+weaker connectivity in PMR.
 
-### Left AI - Right TPJ Interaction
+```text
+interaction beta = +1.414
+p = .005
+FDR q = .029
+```
+
+### Left AI - Right TPJ
 
 ![Left AI to Right TPJ group interaction](results/figures/leftAI_rightTPJ_group_interaction.png)
 
-This plot shows a similar exploratory pattern for Left AI-seeded Right TPJ
-connectivity. The interaction reached the FDR threshold in the reported
-six-test exploratory set, but should still be treated as hypothesis-generating.
+This plot shows a similar exploratory interaction for Left AI-seeded Right TPJ
+connectivity.
 
-### Interaction Beta Summary
+```text
+interaction beta = +1.383
+p = .017
+FDR q = .050
+```
+
+### Interaction Summary
 
 ![Interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
 
 The forest plot compares interaction beta estimates across the selected ROI
-pairs and network composites. Points farther to the right indicate a more
-positive LKM-vs-PMR difference in the loneliness-connectivity slope.
+pairs and network composites. Positive values indicate a more positive
+LKM-vs-PMR difference in the loneliness-connectivity slope.
 
-### Other Fear Anticipation Heatmap
+### Exploratory Heatmap
 
 ![Other Fear Anticipation heatmap](results/figures/other_fear_anticipation_heatmap.png)
 
@@ -86,24 +143,21 @@ inference.
 See [results/README.md](results/README.md) for public-safe result tables and
 additional interpretation notes.
 
-## What Is Included
+## Discussion
 
-This repository includes:
+The exploratory findings suggest that loneliness reduction may be related to
+how affective-empathy regions communicate with social-cognitive regions during
+anticipation of another person's pain. In the reported interaction models,
+greater loneliness reduction corresponded to stronger Left AI-Right STS/TPJ
+connectivity in LKM, but weaker connectivity in PMR.
 
-- event preparation for ds006243 BIDS `events.tsv` files
-- fMRIPrep confound selection and row-count validation
-- first-level design matrix construction
-- seed time-series extraction
-- gPPI design matrix and contrast construction
-- first-level and second-level model templates
-- synthetic tests for code paths that should not require real fMRI data
-- public-safe exploratory summary tables and PNG figures
+This pattern is consistent with the idea that LKM may engage communication
+between affective-empathy and social-cognitive systems. However, the current
+results should be interpreted as hypothesis-generating because ROI pairs were
+selected after preliminary inspection. They should not be presented as
+confirmatory evidence until tested in a preregistered or independent analysis.
 
-This repository does not include raw BIDS data, BOLD images, NIfTI/GIFTI/CIFTI
-files, ROI mask files, subject-level fMRI maps, full confounds, or large
-derivative outputs.
-
-## Data
+## Data Safety
 
 Download the fMRI dataset separately from:
 
@@ -124,31 +178,13 @@ outputs. See [docs/data_sources.md](docs/data_sources.md).
 
 ## Quick Setup
 
-Create the conda environment:
-
 ```bash
 conda env create -f environment.yml
 conda activate lkm-connectivity
-```
-
-Or install with pip:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m pip install -e .
-```
-
-Run synthetic tests:
-
-```bash
 PYTHONPATH=src python -m unittest discover tests
 ```
 
-## Typical Workflow
-
-Run the full pipeline for one subject in dry-run mode:
+Run one subject in dry-run mode:
 
 ```bash
 python scripts/run_subject_pipeline.py \
@@ -159,9 +195,6 @@ python scripts/run_subject_pipeline.py \
   --seed-mask-dir masks \
   --dry-run
 ```
-
-Then run one subject without `--dry-run`, inspect outputs, and scale up to all
-subjects only after local path and mask checks pass.
 
 ## Documentation
 
