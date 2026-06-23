@@ -1,0 +1,2 @@
+analysis_name	contrast	sample_size	lkm_n	pmr_n	number_of_roi_pairs	correction_method	note
+fullsample_group_interaction_other_fear	other_fear_anticipation_vs_safety	54	29	25	4	Benjamini-Hochberg FDR within six specified exploratory ROI/composite tests, separately by model	Public-safe summary only; no subject-level effects, raw data, BOLD images, NIfTI maps, confounds, or ROI masks included.
