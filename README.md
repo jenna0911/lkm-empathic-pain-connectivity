@@ -1,4 +1,4 @@
-# Loneliness Reduction and Empathy-Pain Connectivity After Meditation Training
+# Brain Connectivity During Observed Fear Anticipation and Loneliness Reduction After Meditation Training
 
 This repository contains a public, reproducible gPPI reanalysis pipeline for
 OpenNeuro `ds006243`, an fMRI empathic-pain task dataset collected after
