@@ -70,15 +70,10 @@ because the ROI pairs were inspected after preliminary analyses.
 
 ```mermaid
 flowchart TD
-    A["OpenNeuro ds006243<br/>BIDS events + fMRIPrep BOLD"] --> B["Prepare task events<br/>anticipation, stimulation, optional rest"]
-    B --> C["Select nuisance confounds<br/>motion, FD, cosine, CompCor, outliers"]
-    C --> D["Build first-level design matrix<br/>TR = 2.5 s"]
-    D --> E["Extract seed time series<br/>AI and dACC/aMCC masks"]
-    E --> F["Build gPPI regressors<br/>seed x task condition"]
-    F --> G["Fit first-level gPPI models<br/>contrast effect maps"]
-    G --> H["Extract ROI-to-ROI effects<br/>TPJ, STS, mPFC, PCC targets"]
-    H --> I["Group interaction model<br/>loneliness reduction x group"]
-    I --> J["Public-safe summaries<br/>tables + figures only"]
+    A["1. Prepare OpenNeuro ds006243 inputs<br/>events, fMRIPrep BOLD, confounds"] --> B["2. Build first-level gPPI models<br/>task regressors, seed time series, interactions"]
+    B --> C["3. Estimate subject-level contrast maps<br/>Other Fear Anticipation > Other Safety"]
+    C --> D["4. Extract ROI-to-ROI connectivity effects<br/>AI/dACC seeds to TPJ, STS, mPFC, PCC"]
+    D --> E["5. Test loneliness reduction x group<br/>public-safe tables and figures"]
 ```
 
 The analysis estimates generalized psychophysiological interaction (gPPI)
@@ -123,23 +118,6 @@ p = .017
 FDR q = .050
 ```
 
-### Interaction Summary
-
-![Interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
-
-The forest plot compares interaction beta estimates across the selected ROI
-pairs and network composites. Positive values indicate a more positive
-LKM-vs-PMR difference in the loneliness-connectivity slope.
-
-### Exploratory Heatmap
-
-![Other Fear Anticipation heatmap](results/figures/other_fear_anticipation_heatmap.png)
-
-The heatmap summarizes exploratory associations between loneliness reduction
-and gPPI effects across seed-target pairs for the Other Fear Anticipation >
-Other Safety contrast. It is useful for pattern inspection, not confirmatory
-inference.
-
 See [results/README.md](results/README.md) for public-safe result tables and
 additional interpretation notes.
 
@@ -156,69 +134,3 @@ between affective-empathy and social-cognitive systems. However, the current
 results should be interpreted as hypothesis-generating because ROI pairs were
 selected after preliminary inspection. They should not be presented as
 confirmatory evidence until tested in a preregistered or independent analysis.
-
-## Data Safety
-
-Download the fMRI dataset separately from:
-
-- [OpenNeuro ds006243, version 1.1.2](https://openneuro.org/datasets/ds006243/versions/1.1.2)
-
-Keep all downloaded data and generated outputs in ignored local folders such as:
-
-```text
-data/
-derivatives/
-outputs/
-figures/
-masks/
-```
-
-Do not commit raw neuroimaging data, derivatives, NIfTI files, masks, or large
-outputs. See [docs/data_sources.md](docs/data_sources.md).
-
-## Quick Setup
-
-```bash
-conda env create -f environment.yml
-conda activate lkm-connectivity
-PYTHONPATH=src python -m unittest discover tests
-```
-
-Run one subject in dry-run mode:
-
-```bash
-python scripts/run_subject_pipeline.py \
-  --bids-root data/ds006243 \
-  --fmriprep-root derivatives/fmriprep \
-  --output-root derivatives/lkm_connectivity \
-  --participant-label sub-001 \
-  --seed-mask-dir masks \
-  --dry-run
-```
-
-## Documentation
-
-- [Analysis plan](docs/analysis_plan.md)
-- [Data sources](docs/data_sources.md)
-- [Running the pipeline](docs/running_pipeline.md)
-- [Preparing seed and target masks](docs/seed_masks.md)
-- [ROI-to-ROI analysis](docs/roi_to_roi_analysis.md)
-- [Public results package](results/README.md)
-
-## Repository Layout
-
-```text
-docs/                 analysis notes and running guides
-scripts/              command-line pipeline entry points
-src/lkm_connectivity/ reusable Python package code
-tests/                synthetic tests
-results/              public-safe exploratory result summaries
-environment.yml       conda environment
-requirements.txt      pip requirements
-```
-
-## License
-
-Code in this repository is released under the MIT License. Dataset use is
-governed by the license and terms associated with OpenNeuro `ds006243` and
-related study resources.
