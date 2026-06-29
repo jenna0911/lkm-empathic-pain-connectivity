@@ -2,24 +2,51 @@
 
 This folder contains a public-safe summary of exploratory ROI-to-ROI gPPI group-interaction results for OpenNeuro `ds006243`, version 1.1.2.
 
-## Research Question
+## Full-Sample Analytic Question
 
 Do LKM and PMR differ in the association between loneliness reduction and task-based gPPI connectivity during `Other Fear Anticipation > Other Safety`?
 
 Loneliness reduction was defined as `loneliness_T1 - loneliness_T2`, so positive values indicate decreased loneliness after training.
 
-## Primary Reported Exploratory Findings
+Rather than testing whether either group had higher average connectivity, the
+full-sample model tested whether the connectivity-loneliness reduction slopes
+differed:
 
-Within the six specified exploratory ROI/composite tests, the strongest group-by-loneliness reduction interactions were:
+```text
+gPPI connectivity ~ loneliness reduction x group
+```
 
-- Left-AI-seeded connectivity with Right STS: interaction beta = +1.414, p = .005, FDR q = .029.
-- Left-AI-seeded connectivity with Right TPJ: interaction beta = +1.383, p = .017, FDR q = .050.
+The analysis included all 54 participants: 29 LKM and 25 PMR.
 
-Greater loneliness reduction was associated with stronger Left AI-Right STS/TPJ gPPI connectivity in LKM and weaker connectivity in PMR, based on the fitted interaction model.
+## Main Full-Sample Interaction Results
+
+1. **Left AI-seeded connectivity with Right STS:** interaction beta = +1.414,
+   p = .005, FDR q = .029.
+2. **Left AI-seeded connectivity with Right TPJ:** interaction beta = +1.383,
+   p = .017, FDR q = .050; FDR-threshold exploratory finding.
+
+The groups showed different connectivity-loneliness reduction slopes. The
+positive LKM and negative PMR fitted lines explain the interaction pattern,
+but the inferential test is the interaction term in the full-sample model, not
+separate within-group correlations. One group did not necessarily have
+uniformly higher connectivity.
+
+## Neurocognitive Interpretation
+
+Left AI is commonly linked to affective salience and
+interoceptive-affective processing, while Right STS and Right TPJ are commonly
+associated with social perception, mentalizing, and perspective-taking. The
+interaction is therefore consistent with different links between
+affective-empathy and social-cognitive systems after LKM versus PMR. “Left
+AI-seeded connectivity” does not imply causal direction.
 
 ## Critical Caveat
 
-These analyses are exploratory and post hoc. They do not establish causality and require replication in an independent or preregistered analysis. The ROI pairs were selected after preliminary inspection, so these results should be interpreted as hypothesis-generating.
+These were full-sample, FDR-corrected group interaction results within the
+tested interaction family. However, because the highlighted ROI pairs were
+prioritized after preliminary inspection of the same dataset, they should be
+interpreted as exploratory and hypothesis-generating rather than confirmatory.
+Independent or preregistered replication is needed.
 
 gPPI estimates task-dependent functional connectivity. Labels such as `Left AI -> Right STS` mean Left-AI-seeded connectivity with a Right STS target ROI; they do not imply causal directional influence from Left AI to Right STS.
 

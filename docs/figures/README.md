@@ -1,23 +1,29 @@
 # Public Figure Guide
 
 All figures listed here are aggregate, public-safe PNG files. Participant
-labels have been removed.
+labels have been removed. The scatter plots visualize a full-sample N = 54
+interaction model; they are not separate LKM-only or PMR-only tests.
 
 ## `leftAI_rightSTS_group_interaction.png`
 
-- **What is plotted:** Loneliness reduction against Left AI-seeded
-  task-dependent connectivity with Right STS, with separate LKM and PMR fitted
-  slopes.
+- **What is plotted:** Full-sample group interaction analysis (N = 54).
+  Points are individual participants; colors and marker shapes indicate group.
+  Separate fitted lines visualize the group-by-loneliness reduction
+  interaction.
 - **Contrast:** Other Fear Anticipation > Other Safety.
+- **Model:** gPPI effect ~ loneliness reduction x group.
+- **Statistics shown:** Interaction beta = +1.414, p = .005, FDR q = .029.
 - **Status:** Exploratory and post hoc; not confirmatory.
 - **Participant labels:** Removed.
 
 ## `leftAI_rightTPJ_group_interaction.png`
 
-- **What is plotted:** Loneliness reduction against Left AI-seeded
-  task-dependent connectivity with Right TPJ, with separate LKM and PMR fitted
-  slopes.
+- **What is plotted:** Full-sample group interaction analysis (N = 54) for
+  Left AI-seeded connectivity with Right TPJ. Separate LKM and PMR fitted lines
+  visualize the interaction.
 - **Contrast:** Other Fear Anticipation > Other Safety.
+- **Model:** gPPI effect ~ loneliness reduction x group.
+- **Statistics shown:** Interaction beta = +1.383, p = .017, FDR q = .050.
 - **Status:** Exploratory and post hoc; not confirmatory.
 - **Participant labels:** Removed.
 
@@ -28,6 +34,9 @@ labels have been removed.
 - **Contrast:** Other Fear Anticipation > Other Safety.
 - **Status:** Exploratory summary; not confirmatory.
 - **Participant labels:** Not applicable; only aggregate estimates are shown.
+- **Interpretation:** The strongest positive estimates were concentrated in
+  Left AI-seeded connectivity with Right STS and Right TPJ; other displayed
+  confidence intervals overlap zero.
 
 ## `other_fear_anticipation_heatmap.png`
 

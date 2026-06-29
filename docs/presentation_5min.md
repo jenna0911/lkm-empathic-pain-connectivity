@@ -1,89 +1,115 @@
 # Five-Minute Presentation Guide
 
-This outline is designed for a five-minute research presentation followed by a
-short GitHub live demo. Keep the statistical claims explicitly exploratory.
+The central inferential result is the full-sample group interaction. Explain
+the separate LKM and PMR lines only after introducing that model.
 
 ## 0:00-0:35 - Opening Question
 
-**Slide title:** Does the brain become more empathic, or better connected?
+**Slide title:** Do LKM and PMR reduce loneliness through the same neural relationship?
 
-**What to show:** The audience question and options A-C from the README.
+**What to show:** The research question over a minimal LKM-versus-PMR graphic.
 
-**Speaker notes:** Loneliness can change after meditation training, but a
-behavioral change does not tell us which neural process changed. Ask whether
-the key signal is more similar activity, a larger pain response, or stronger
-communication between systems. This project tests the third possibility.
+**Speaker notes:** Both training groups may show changes in loneliness, but the
+same behavioral outcome need not have the same brain-connectivity
+relationship. This project asks whether the connectivity-loneliness
+relationship differs between groups.
 
-**Audience prompt:** “Which option would you predict before seeing the result?”
+**Interaction question:** “Would you expect the same brain-behavior
+relationship in both groups?”
 
-## 0:35-1:10 - Original Study vs Reanalysis
+## 0:35-1:10 - Original Paper vs New Question
 
-**Slide title:** Same dataset, a different question
+**Slide title:** Pattern similarity versus task-dependent connectivity
 
-**What to show:** The “Original Paper vs This Reanalysis” table.
+**What to show:** The README comparison table.
 
-**Speaker notes:** The original study tested self-other multi-voxel pattern
-similarity during pain and fearful anticipation. This reanalysis instead asks
-whether loneliness reduction is associated with task-dependent connectivity
-between affective-empathy and social-cognitive regions, and whether that
-association differs between LKM and PMR.
+**Speaker notes:** The original paper examined whether self and other neural
+patterns were similar. This reanalysis asks whether affective-empathy and
+social-cognitive regions show task-dependent connectivity during anticipation
+of another person's pain.
 
-## 1:10-2:00 - Repository Architecture
+**Interaction question:** “Does similar activation necessarily imply stronger
+communication?”
 
-**Slide title:** A public and auditable analysis
+## 1:10-1:55 - Full-Sample Interaction Model
 
-**What to show:** The `docs/`, `scripts/`, `src/lkm_connectivity/`, and `tests/`
-folders.
+**Slide title:** The formal test is a difference in slopes
 
-**Speaker notes:** Research decisions live in `docs`, runnable stages in
-`scripts`, reusable functions in `src`, and synthetic checks in `tests`. The
-separation makes it possible to inspect the reasoning, implementation, and
-validation independently. Real imaging data remain local.
+**What to show:** `N = 54`, `LKM = 29`, `PMR = 25`, followed by:
 
-**Audience prompt:** “Which folder would you inspect first if you wanted to
-audit this analysis?”
+```text
+gPPI connectivity ~ loneliness reduction x group
+```
 
-## 2:00-3:00 - gPPI Pipeline
+**Speaker notes:** The model uses all 54 participants at once. Its interaction
+term tests whether the relationship between loneliness reduction and
+connectivity has a different slope in LKM and PMR. It is not a test of which
+group has higher average connectivity.
 
-**Slide title:** From task timing to connectivity contrasts
+**Interaction question:** “Are we testing average group differences, or
+differences in slopes?” Answer: “Differences in slopes.”
 
-**What to show:** The Mermaid pipeline in the README and
-`scripts/05_run_gppi.py`.
+## 1:55-2:40 - Left AI-Right STS
 
-**Speaker notes:** Events and confounds define the first-level design. A seed
-time series from AI or dACC is combined with each task regressor to form gPPI
-interaction terms. First-level contrast maps are summarized in target ROIs,
-then modeled against loneliness reduction, group, and their interaction. These
-are task-dependent associations, not causal arrows between regions.
+**Slide title:** Main full-sample interaction: Left AI-seeded Right STS connectivity
 
-## 3:00-4:15 - Exploratory Results
+**What to show:** `leftAI_rightSTS_group_interaction.png`.
 
-**Slide title:** Left AI-seeded connectivity with Right STS and TPJ
+**Speaker notes:** First report the full-sample interaction: beta = +1.414,
+p = .005, FDR q = .029. Then explain that the blue LKM line has a positive
+fitted slope and the red PMR line has a negative fitted slope. The lines
+visualize the interaction; the evidence comes from the interaction term.
 
-**What to show:** The two public-safe interaction plots followed by the forest
-plot.
+**Interaction question:** “What does this interaction not tell us?” Answer:
+“It does not show that one group had uniformly higher connectivity.”
 
-**Speaker notes:** For Other Fear Anticipation greater than Other Safety, the
-Left AI-Right STS interaction was beta = 1.414, p = .005, FDR q = .029. The
-Left AI-Right TPJ interaction was beta = 1.383, p = .017, FDR q = .050. The
-slopes differed by group; this does not mean that LKM had higher connectivity
-overall.
+## 2:40-3:15 - Left AI-Right TPJ
 
-**Audience prompt:** “Would you prioritize STS, TPJ, or a preregistered network
-composite in the next study?”
+**Slide title:** Second full-sample interaction: Left AI-seeded Right TPJ connectivity
 
-## 4:15-5:00 - Reproducibility and Caveat
+**What to show:** `leftAI_rightTPJ_group_interaction.png`.
 
-**Slide title:** Reproducible, but not yet confirmatory
+**Speaker notes:** The interaction estimate was beta = +1.383, p = .017, with
+FDR q = .050. Describe this as an FDR-threshold exploratory result, not as
+stronger confirmation. Again, interpret the group lines only as a
+visualization of the full-sample slope difference.
 
-**What to show:** Synthetic tests, `.gitignore`, and the public-safe `results/`
-folder.
+## 3:15-3:50 - Interaction Summary
 
-**Speaker notes:** The repository exposes code, decisions, tests, summary
-statistics, and figures while excluding raw BOLD and participant-level
-derivatives. The ROI pairs were prioritized after preliminary inspection of
-the same dataset. The findings are therefore hypothesis-generating and require
-preregistered or independent replication.
+**Slide title:** Which interaction estimates stood out?
 
-**Audience prompt:** “What would make the next analysis genuinely
-confirmatory?”
+**What to show:** `interaction_beta_forest_plot.png`.
+
+**Speaker notes:** The strongest positive interaction estimates were
+concentrated in Left AI-seeded connectivity with Right STS and Right TPJ.
+Other tested ROI pairs and composites had confidence intervals overlapping
+zero, so they are not presented as significant findings.
+
+**Interaction question:** “Would you carry one ROI pair or both into a
+preregistered replication?”
+
+## 3:50-4:25 - Neurocognitive Interpretation
+
+**Slide title:** Linking affective and social-cognitive systems
+
+**What to show:** Left AI beside Right STS and Right TPJ labels.
+
+**Speaker notes:** Left AI is commonly linked to affective salience and
+interoceptive-affective processing. Right STS and TPJ are commonly linked to
+social perception, mentalizing, and perspective-taking. The results are
+consistent with group differences in how these systems' connectivity relates
+to loneliness reduction; they do not show causal influence.
+
+## 4:25-5:00 - Reproducibility and Caveat
+
+**Slide title:** Full-sample and FDR-corrected, but exploratory
+
+**What to show:** The README caveat and links to `scripts/`, `src/`, `tests/`,
+and reproducibility documentation.
+
+**Speaker notes:** These were full-sample, FDR-corrected interaction results
+within the tested family. However, the highlighted ROI pairs were prioritized
+after preliminary inspection of the same dataset, so they remain
+hypothesis-generating. Independent or preregistered replication is needed.
+
+**Interaction question:** “What would you preregister for replication?”
