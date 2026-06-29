@@ -5,26 +5,26 @@
 A reproducible gPPI reanalysis of OpenNeuro `ds006243` comparing
 Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 
-**Quick navigation:** [30-second overview](#30-second-overview) |
-[Pipeline](#pipeline-at-a-glance) | [Main results](#primary-analytic-question-do-the-two-groups-show-different-brain-behavior-relationships) |
-[Reproducibility](#reproducibility) | [5-minute presentation](docs/presentation_5min.md) |
-[Live demo](docs/live_demo.md)
+**Quick navigation:** [Background](#background) |
+[Research question](#research-question) |
+[Pipeline](#six-step-analysis-pipeline) |
+[Pooled result](#1-no-simple-pooled-relationship-in-the-full-sample) |
+[Group interaction results](#2-why-test-a-group-interaction) |
+[Reproducibility](#reproducibility) |
+[Caveats](#6-exploratory-caveat) |
+[Repository layout](#repository-layout)
 
-## 30-Second Overview
+## Background
 
-- **Original study:** self-other pattern similarity during empathic pain.
-- **This project:** task-dependent functional connectivity between affective-empathy and social-cognitive systems.
-- **Main exploratory finding:** group-dependent Left AI-seeded connectivity with Right STS and Right TPJ during **Other Fear Anticipation > Other Safety**.
+Loneliness may be related not only to how strongly individual brain regions
+respond to social information, but also to how affective-empathy and
+social-cognitive systems communicate during anticipation of another person's
+pain.
 
-## Question for the Audience
-
-> **When loneliness decreases, does the brain become more empathic, or better connected?**
-
-- **A.** Stronger self-other pattern similarity
-- **B.** Stronger pain response
-- **C.** Stronger communication between affective-empathy and social-cognitive systems
-
-**This repository tests option C.**
+The dataset contains an empathic-pain task collected after LKM or PMR
+training. This project asks whether reductions in loneliness are related to
+task-dependent functional connectivity, and whether that relationship differs
+between the two training groups.
 
 ## Original Paper vs This Reanalysis
 
@@ -35,33 +35,69 @@ Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 | AI and dACC local pattern representation | AI/dACC-seeded connectivity with TPJ, STS, mPFC, and PCC |
 | Loneliness and pattern similarity | Loneliness reduction x meditation group interaction |
 
-## Pipeline at a Glance
+## Research Question
+
+> **Does reduced loneliness follow one shared neural relationship across
+> everyone, or does the connectivity-loneliness relationship differ between
+> LKM and PMR?**
+
+The primary public contrast is **Other Fear Anticipation > Other Safety**.
+Loneliness reduction is defined as `T1 - T2`, so positive values indicate
+decreased loneliness after training.
+
+## Six-Step Analysis Pipeline
 
 ```mermaid
-flowchart LR
-    A["OpenNeuro<br/>ds006243"] --> B["Task events<br/>+ confounds"]
-    B --> C["First-level<br/>design matrix"]
-    C --> D["AI/dACC seed<br/>time series"]
-    D --> E["gPPI seed x task<br/>regressors"]
-    E --> F["First-level<br/>contrast maps"]
-    F --> G["ROI-to-ROI<br/>extraction"]
-    G --> H["Loneliness reduction<br/>x group interaction"]
-    H --> I["Public-safe<br/>results"]
+flowchart TD
+    A["1. OpenNeuro ds006243<br/>BIDS events + fMRIPrep BOLD"] -->
+    B["2. Prepare task events and confounds<br/>anticipation, stimulation, motion, FD, CompCor"] -->
+    C["3. Build first-level design matrix<br/>TR = 2.5 s"] -->
+    D["4. Extract seed time series<br/>Left AI, Right AI, dACC/aMCC"] -->
+    E["5. Build and fit gPPI models<br/>seed x task condition; Other Fear > Safety"] -->
+    F["6. Extract ROI effects and test<br/>loneliness reduction x group"]
 ```
 
-gPPI estimates task-dependent functional connectivity. A label such as
-“Left AI-seeded connectivity with Right STS” describes the seed used to
-estimate connectivity; it does **not** imply causal influence from one region
-to another.
+The final inferential step tests whether the relationship between loneliness
+reduction and connectivity differs between LKM and PMR in the full sample.
 
-**No raw BOLD data, NIfTI maps, or participant-level derivatives are committed
-to this repository.**
+gPPI estimates task-dependent functional connectivity. “Left AI-seeded
+connectivity with Right STS” describes the seed used to estimate connectivity;
+it does not imply causal influence.
 
-## Primary Analytic Question: Do the Two Groups Show Different Brain-Behavior Relationships?
+**No raw BOLD data, NIfTI maps, masks, or participant-level derivatives are
+committed to this repository.**
 
-Rather than asking whether LKM or PMR had higher connectivity on average, we
-tested whether the relationship between loneliness reduction and connectivity
-differed between the two groups.
+## Results
+
+The public results first examine whether loneliness reduction is related to a
+simple pooled connectivity measure across all 54 participants. We then test
+whether this relationship differs between LKM and PMR.
+
+- **Full sample:** N = 54
+- **LKM:** 29
+- **PMR:** 25
+- **Contrast:** Other Fear Anticipation > Other Safety
+- **Status:** All reported findings are exploratory.
+
+### 1. No Simple Pooled Relationship in the Full Sample
+
+![No simple pooled association for the AI mentalizing composite](results/figures/ai_mentalizing_composite_pooled.png)
+
+Across all 54 participants, loneliness reduction was not associated with the
+AI mentalizing composite:
+
+- **Spearman rho:** -0.098
+- **p:** .480
+- **Model q:** .236
+
+This suggests that a single pooled brain-behavior relationship may not
+adequately describe both meditation groups. **This null pooled association
+does not mean the groups have identical relationships.**
+
+### 2. Why Test a Group Interaction?
+
+> **If LKM and PMR show opposite brain-behavior slopes, pooling them may hide
+> both patterns.**
 
 ```text
 gPPI connectivity ~ loneliness reduction x group
@@ -70,57 +106,36 @@ gPPI connectivity ~ loneliness reduction x group
 - **gPPI connectivity:** task-dependent connectivity during **Other Fear
   Anticipation > Other Safety**.
 - **Loneliness reduction:** `T1 - T2`; positive values indicate decreased
-  loneliness after training.
-- **Group:** LKM or PMR.
-- **Interaction:** whether the LKM and PMR regression slopes differ.
+  loneliness.
+- **Group:** LKM versus PMR.
+- **Interaction:** tests whether the loneliness-connectivity slopes differ
+  between the two groups.
 
-**The analysis used the full sample of 54 participants, including 29 LKM and
-25 PMR participants.**
+We are not asking whether LKM had higher connectivity on average. We are
+asking whether the connectivity-loneliness relationship had different slopes
+in LKM and PMR.
 
-## Main Full-Sample Result: Left AI-Seeded Connectivity with Right STS
+### 3. Full-Sample Group Interaction: Left AI-Seeded Right STS Connectivity
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right STS interaction](results/figures/leftAI_rightSTS_group_interaction.png)
 
-*Full-sample group interaction analysis (N = 54). Points are individual
-participants; colors and marker shapes indicate meditation group. Separate
-fitted lines visualize the group-by-loneliness reduction interaction.*
+*Full-sample group interaction model, N = 54. LKM and PMR are shown separately
+only to visualize the interaction.*
 
-- **Contrast:** Other Fear Anticipation > Other Safety
-- **Model:** gPPI effect ~ loneliness reduction x group
 - **Interaction beta:** +1.414
 - **p:** .005
 - **FDR q:** .029
+- **Contrast:** Other Fear Anticipation > Other Safety
 
-The groups showed different connectivity-loneliness reduction slopes. The
-significant interaction means that the slope linking loneliness reduction to
-Left AI-seeded Right STS connectivity differed between LKM and PMR. It does
-not mean that one group had uniformly higher connectivity.
+The interaction was significant after FDR correction. This indicates that the
+association between loneliness reduction and Left AI-seeded Right STS
+connectivity differed between LKM and PMR.
 
-## How to Interpret the Two Regression Lines
+In the fitted model, the LKM slope was positive and the PMR slope was negative.
+These separate lines explain the interaction; the inferential test is the
+full-sample interaction term. **LKM and PMR showed different fitted slopes.**
 
-The LKM line has a positive fitted slope, while the PMR line has a negative
-fitted slope. These lines are shown to explain the interaction. **The
-inferential test is the interaction term in the full-sample regression model,
-not separate within-group correlations.**
-
-```text
-Full sample N=54
-        |
-Test: loneliness reduction x group
-        |
-Significant slope difference
-        |
-LKM: positive fitted slope
-PMR: negative fitted slope
-```
-
-A visible difference between two lines is not sufficient by itself. The
-statistical evidence comes from the interaction beta and its corrected p value.
-
-For a fuller explanation, see
-[Understanding the group interaction](docs/group_interaction_explained.md).
-
-## Second Full-Sample Interaction Result: Left AI-Seeded Connectivity with Right TPJ
+### 4. Full-Sample Group Interaction: Left AI-Seeded Right TPJ Connectivity
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right TPJ interaction](results/figures/leftAI_rightTPJ_group_interaction.png)
 
@@ -129,64 +144,46 @@ For a fuller explanation, see
 - **FDR q:** .050
 - **Label:** FDR-threshold exploratory finding
 
-A similar but threshold-level interaction was observed for Left AI-seeded
-connectivity with Right TPJ.
+A similar group-dependent slope pattern was observed for Left AI-seeded Right
+TPJ connectivity. Because the FDR q value was at the .05 threshold, this
+result should be interpreted cautiously.
 
-## Summary Forest Plot
+### 5. Summary Across Tested Pathways
 
 ![Exploratory interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
 
-The forest plot shows that the strongest positive group interaction estimates
-were concentrated in Left AI-seeded connectivity with Right STS and Right TPJ;
-other tested connections had confidence intervals overlapping zero.
+The forest plot summarizes candidate group interaction effects. The strongest
+positive interaction estimates were observed for Left AI-seeded connectivity
+with Right STS and Right TPJ. Other pathways had confidence intervals
+overlapping zero.
 
-All figures above are public-safe versions without participant labels. See the
-[figure guide](docs/figures/README.md) and
-[public result tables](results/README.md).
+### 6. Exploratory Caveat
 
-## Neurocognitive Interpretation
-
-Left AI is commonly linked to affective salience and
-interoceptive-affective processing. Right STS and Right TPJ are commonly
-associated with social perception, mentalizing, and perspective-taking. The
-observed group interaction is therefore consistent with different links
-between affective-empathy and social-cognitive systems after LKM versus PMR.
-
-This interpretation concerns Left AI-seeded connectivity with Right STS/TPJ.
-It does not establish causal direction or prove a neural mechanism of LKM.
-
-## Exploratory Caveat
-
-> **These were full-sample, FDR-corrected group interaction results within the
-> tested interaction family. However, because the highlighted ROI pairs were
-> prioritized after preliminary inspection of the same dataset, they should
-> be interpreted as exploratory and hypothesis-generating rather than
-> confirmatory. Independent or preregistered replication is needed.**
+> **These findings are FDR-corrected within the tested interaction family, but
+> they remain exploratory because the highlighted ROI pairs were prioritized
+> after preliminary inspection of the same dataset. They are
+> hypothesis-generating and require preregistered or independent replication.**
 
 ## Reproducibility
 
-**`docs/`**
+**`docs/`** explains research questions, ROI definitions, data sources, and
+analysis decisions.
 
-Research question, ROI definitions, data sources, and analysis rationale.
+**`scripts/`** provides step-by-step command-line entry points.
 
-**`scripts/`**
+**`src/lkm_connectivity/`** contains reusable functions for events, confounds,
+GLM, gPPI, and group models.
 
-Step-by-step runnable analysis commands.
-
-**`src/lkm_connectivity/`**
-
-Reusable Python functions for events, confounds, GLM, gPPI, and group models.
-
-**`tests/`**
-
-Synthetic tests that validate analysis logic without requiring real fMRI data.
+**`tests/`** validates the analysis logic with synthetic data and images.
 
 Start here:
 
+- [Five-minute presentation](docs/presentation_5min.md)
 - [Run the pipeline](docs/running_pipeline.md)
+- [Understand the group interaction](docs/group_interaction_explained.md)
 - [Understand the ROI-to-ROI analysis](docs/roi_to_roi_analysis.md)
-- [Prepare seed and target masks](docs/seed_masks.md)
 - [Reproduce and audit the workflow](docs/reproducibility.md)
+- [Read the public figure guide](docs/figures/README.md)
 
 ## Repository Layout
 
@@ -204,5 +201,5 @@ requirements.txt      Python package requirements
 
 ## Discussion Prompt
 
-> **If you were preregistering the next study, would you select Left AI-Right
-> STS, Left AI-Right TPJ, or both as the primary pathway? Why?**
+> **If the pooled relationship is near zero but the group interaction is
+> nonzero, what should the next preregistered study test?**
