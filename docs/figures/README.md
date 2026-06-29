@@ -1,8 +1,21 @@
 # Public Figure Guide
 
-All figures listed here are aggregate, public-safe PNG files. Participant
-labels have been removed. The scatter plots visualize a full-sample N = 54
-interaction model; they are not separate LKM-only or PMR-only tests.
+All figures listed here are aggregate, public-safe PNG files, and participant
+labels have been removed. The pooled figure uses one model across N = 54. The
+interaction figures use separate fitted lines only to visualize a full-sample
+group interaction; they are not separate LKM-only or PMR-only tests.
+
+## `ai_mentalizing_composite_pooled.png`
+
+- **What is plotted:** Loneliness reduction against the AI mentalizing
+  composite across all 54 participants, using one color and one pooled
+  regression line.
+- **Contrast:** Other Fear Anticipation > Other Safety.
+- **Statistics shown:** Spearman rho = -0.098, p = .480, model q = .236.
+- **Group display:** No group colors, group labels, or separate group fits.
+- **Status:** Exploratory pooled analysis; no evidence of a simple pooled
+  association.
+- **Participant labels:** Removed.
 
 ## `leftAI_rightSTS_group_interaction.png`
 
