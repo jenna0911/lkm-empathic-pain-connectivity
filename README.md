@@ -10,9 +10,7 @@ Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 [Pipeline](#six-step-analysis-pipeline) |
 [Pooled result](#1-no-simple-pooled-relationship-in-the-full-sample) |
 [Group interaction results](#2-why-test-a-group-interaction) |
-[Reproducibility](#reproducibility) |
-[Caveats](#6-exploratory-caveat) |
-[Repository layout](#repository-layout)
+[Caveats](#6-exploratory-caveat)
 
 ## Background
 
@@ -163,41 +161,6 @@ overlapping zero.
 > they remain exploratory because the highlighted ROI pairs were prioritized
 > after preliminary inspection of the same dataset. They are
 > hypothesis-generating and require preregistered or independent replication.**
-
-## Reproducibility
-
-**`docs/`** explains research questions, ROI definitions, data sources, and
-analysis decisions.
-
-**`scripts/`** provides step-by-step command-line entry points.
-
-**`src/lkm_connectivity/`** contains reusable functions for events, confounds,
-GLM, gPPI, and group models.
-
-**`tests/`** validates the analysis logic with synthetic data and images.
-
-Start here:
-
-- [Five-minute presentation](docs/presentation_5min.md)
-- [Run the pipeline](docs/running_pipeline.md)
-- [Understand the group interaction](docs/group_interaction_explained.md)
-- [Understand the ROI-to-ROI analysis](docs/roi_to_roi_analysis.md)
-- [Reproduce and audit the workflow](docs/reproducibility.md)
-- [Read the public figure guide](docs/figures/README.md)
-
-## Repository Layout
-
-```text
-docs/                 research decisions, presentation, and running guides
-results/              small public-safe summary tables and figures
-scripts/              command-line entry points for each pipeline stage
-src/lkm_connectivity/ reusable analysis functions
-tests/                synthetic validation without private or imaging data
-README.md             research story and navigation
-environment.yml       reproducible Conda environment
-requirements.txt      Python package requirements
-.gitignore            safeguards against committing imaging data and outputs
-```
 
 ## Discussion Prompt
 

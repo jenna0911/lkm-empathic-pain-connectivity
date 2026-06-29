@@ -3,9 +3,7 @@
 The story moves from a pooled null result to the possibility of opposing group
 slopes, then to the formal full-sample interaction test.
 
-## 0:00-0:35 - Opening Question
-
-**Slide title:** One shared neural relationship?
+## Opening Question
 
 **What to show:** “Does reduced loneliness follow one shared neural
 relationship across everyone?”
@@ -18,9 +16,7 @@ connectivity.
 **Interaction question:** “Would you expect one shared relationship across
 both training groups?”
 
-## 0:35-1:10 - Original Paper vs This Reanalysis
-
-**Slide title:** Pattern similarity versus task-dependent connectivity
+## Original Paper vs This Reanalysis
 
 **What to show:** The README comparison table.
 
@@ -32,9 +28,7 @@ regions.
 **Interaction question:** “Does similar activation necessarily mean stronger
 functional connectivity?”
 
-## 1:10-1:45 - Pooled AI Mentalizing Composite
-
-**Slide title:** No simple pooled association
+## Pooled AI Mentalizing Composite
 
 **What to show:** `ai_mentalizing_composite_pooled.png`.
 
@@ -46,9 +40,7 @@ The null pooled result does not show that the groups have identical slopes.
 **Interaction question:** “What information might be hidden when everyone is
 fit with one line?”
 
-## 1:45-2:10 - Why a Null Pooled Result May Hide Structure
-
-**Slide title:** Can opposite slopes cancel?
+## Why a Null Pooled Result May Hide Structure
 
 **What to show:** One positive and one negative schematic line converging on a
 near-flat pooled line.
@@ -62,9 +54,7 @@ relationships.
 mean there is no effect?” Answer: “Not necessarily. Opposite group slopes can
 cancel each other.”
 
-## 2:10-3:00 - Full-Sample Interaction Model
-
-**Slide title:** Test the difference in slopes
+## Full-Sample Interaction Model
 
 **What to show:**
 
@@ -81,9 +71,7 @@ connectivity.
 **Interaction question:** “Which term formally tests whether the two slopes
 differ?” Answer: “The loneliness reduction x group interaction.”
 
-## 3:00-3:40 - Left AI-Right STS Interaction
-
-**Slide title:** Left AI-seeded Right STS connectivity
+## Left AI-Right STS Interaction
 
 **What to show:** `leftAI_rightSTS_group_interaction.png`.
 
@@ -95,9 +83,7 @@ from the full-sample interaction term, not two separate group tests.
 **Interaction question:** “Does this plot show that LKM had higher connectivity
 overall?” Answer: “No; it shows different fitted slopes.”
 
-## 3:40-4:10 - Left AI-Right TPJ Interaction
-
-**Slide title:** Left AI-seeded Right TPJ connectivity
+## Left AI-Right TPJ Interaction
 
 **What to show:** `leftAI_rightTPJ_group_interaction.png`.
 
@@ -108,9 +94,7 @@ describe this finding cautiously and explicitly as exploratory.
 **Interaction question:** “How would you describe a result exactly at the FDR
 threshold?”
 
-## 4:10-4:35 - Tested Pathways
-
-**Slide title:** Interaction estimates in context
+## Tested Pathways
 
 **What to show:** `interaction_beta_forest_plot.png`.
 
@@ -122,9 +106,7 @@ findings.
 **Interaction question:** “Which pathway would you prioritize for
 preregistered replication?”
 
-## 4:35-5:00 - Transparent and Reproducible
-
-**Slide title:** Six steps from OpenNeuro to interaction test
+## Transparent Analysis
 
 **What to show:** The six-step vertical Mermaid pipeline and the exploratory
 caveat.
