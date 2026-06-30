@@ -12,7 +12,7 @@ connectivity.
 
 One possible way to reduce loneliness is meditation. In particular,
 loving-kindness meditation (LKM), is designed to increase warm and positive
-feelings toward oneself and others.
+feelings toward oneself and others. But progressive muscle relaxation (PMR)is control group.
 
 ![Meditation may reduce loneliness and support empathy](docs/assets/meditation_loneliness_empathy.png)
 
