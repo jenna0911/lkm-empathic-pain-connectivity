@@ -1,6 +1,7 @@
 # Brain Connectivity During Observed Fear Anticipation and Loneliness Reduction After Meditation Training
 
-> **Can another researcher reproduce this fMRI analysis without asking for hidden scripts or undocumented preprocessing decisions?**
+> **Do you feel lonely? When loneliness decreases, do people simply feel
+> better—or does their brain become better at connecting with other people?**
 
 A reproducible gPPI reanalysis of OpenNeuro `ds006243` comparing
 Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
