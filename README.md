@@ -3,7 +3,7 @@
 > **Do you feel lonely? When loneliness decreases, do people simply feel
 > better—or does their brain become better at connecting with other people?**
 
-A reanalysis of
+A gPPI reanalysis of
 [OpenNeuro ds006243](https://openneuro.org/datasets/ds006243/versions/1.1.2)
 examining whether loneliness reduction is related to task-dependent
 connectivity.
