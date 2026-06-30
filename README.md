@@ -20,7 +20,7 @@ Loneliness may be related not only to how strongly individual brain regions
 respond to social information, but also to how affective-empathy and
 social-cognitive systems communicate during anticipation of another person's
 pain.
-
+We use fMRI connectivity analysis to ask whether reduced loneliness is related to better communication between brain systems for emotion and social understanding.
 
 ## Original Paper vs This Reanalysis
 
@@ -31,7 +31,7 @@ pain.
 | AI and dACC local pattern representation | AI/dACC-seeded connectivity with TPJ, STS, mPFC, and PCC |
 | Loneliness and pattern similarity | Loneliness reduction x meditation group interaction |
 
-## Research Question
+## Hypothesis
 
 ![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
 
