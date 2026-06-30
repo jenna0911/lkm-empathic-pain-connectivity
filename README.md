@@ -35,9 +35,8 @@ We use fMRI connectivity analysis to ask whether reduced loneliness is related t
 
 ![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
 
-The primary public contrast is **Other Fear Anticipation > Other Safety**.
-Loneliness reduction is defined as `T1 - T2`, so positive values indicate
-decreased loneliness after training.
+Loneliness reduction may involve not only emotional empathy, but also communication between emotional and social-cognitive brain networks.
+
 
 ## Six-Step Analysis Pipeline
 
@@ -50,6 +49,10 @@ flowchart TD
     E["5. Build and fit gPPI models<br/>seed x task condition; Other Fear > Safety"] -->
     F["6. Extract ROI effects and test<br/>loneliness reduction x group"]
 ```
+
+The primary public contrast is **Other Fear Anticipation > Other Safety**.
+Loneliness reduction is defined as `T1 - T2`, so positive values indicate
+decreased loneliness after training.
 
 The final inferential step tests whether the relationship between loneliness
 reduction and connectivity differs between LKM and PMR in the full sample.
