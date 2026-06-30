@@ -41,6 +41,8 @@ between the two training groups.
 
 ## Research Question
 
+![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
+
 > **Does reduced loneliness follow one shared neural relationship across
 > everyone, or does the connectivity-loneliness relationship differ between
 > LKM and PMR?**
