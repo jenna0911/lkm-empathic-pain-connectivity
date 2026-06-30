@@ -5,8 +5,7 @@ slopes, then to the formal full-sample interaction test.
 
 ## Opening Question
 
-**What to show:** “Does reduced loneliness follow one shared neural
-relationship across everyone?”
+**What to show:** “Do you feel lonely?”
 
 **Speaker notes:** A pooled analysis assumes that one brain-behavior
 relationship can describe all participants. Before comparing groups, we first
