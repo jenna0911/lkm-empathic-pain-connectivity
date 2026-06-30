@@ -11,8 +11,7 @@ Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 [Pooled result](#1-no-simple-pooled-relationship-in-the-full-sample) |
 [Pathway summary](#3-which-pathways-show-the-strongest-group-dependent-slopes) |
 [Conclusion](#conclusion) |
-[Discussion](#discussion) |
-[Caveats](#exploratory-caveat)
+[Discussion](#discussion)
 
 ## Background
 
@@ -216,46 +215,7 @@ confirmatory follow-up.
 
 ## Discussion
 
-### What May This Mean?
-
-Left AI is often associated with affective salience and
-interoceptive-affective processing. Right STS and Right TPJ are commonly
-implicated in social perception, mentalizing, and perspective-taking. The
-observed pattern is therefore consistent with different links between
-affective-empathy and social-cognitive systems in LKM and PMR.
-
-### What Does This Not Mean?
-
-- It does not establish that LKM caused the connectivity change.
-- It does not establish that Left AI causally drives Right STS or Right TPJ.
-- It does not show that LKM participants had higher connectivity overall.
-- It does not prove that one intervention is superior to the other.
-- It does not establish a clinical treatment mechanism.
-
-### Key Limitations
-
-- The highlighted ROI pairs were prioritized after preliminary inspection of
-  the same dataset.
-- FDR correction was applied within the tested interaction family, but it does
-  not eliminate all researcher degrees of freedom.
-- The results are correlational and do not establish mediation or causal
-  direction.
-- The sample size is modest for stable brain-behavior interaction estimates.
-- Independent replication or preregistration is needed.
-
-### Next Steps
-
-1. Preregister Left AI-seeded Right STS as the primary replication pathway.
-2. Treat Left AI-seeded Right TPJ as a secondary replication pathway.
-3. Test whether baseline loneliness, motion, or other covariates alter the
-   interaction.
-4. Use an independent sample or held-out validation strategy.
-5. Examine whether the connectivity pathway predicts behavioral empathy or
-   social functioning outcomes.
-
-## Exploratory Caveat
-
-> **These findings are FDR-corrected within the tested interaction family, but
-> they remain exploratory because the highlighted ROI pairs were prioritized
-> after preliminary inspection of the same dataset. They are
-> hypothesis-generating and require preregistered or independent replication.**
+These findings are FDR-corrected within the tested interaction family, but
+they remain exploratory because the highlighted ROI pairs were prioritized
+after preliminary inspection of the same dataset. They are
+hypothesis-generating and require preregistered or independent replication.
