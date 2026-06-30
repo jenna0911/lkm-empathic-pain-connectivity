@@ -132,12 +132,6 @@ strongest positive group interaction estimate.
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right STS interaction](results/figures/leftAI_rightSTS_group_interaction.png)
 
-- **Interaction beta:** +1.414
-- **p:** .005
-- **FDR q:** .029
-- **Contrast:** Other Fear Anticipation > Other Safety
-- **Model:** Full-sample interaction, N = 54
-
 The FDR-corrected interaction indicates that the relationship between
 loneliness reduction and Left AI-seeded Right STS connectivity differed
 between LKM and PMR.
@@ -149,11 +143,6 @@ interaction term, not separate within-group correlations.
 ### 5. Related Exploratory Pathway: Left AI-Seeded Right TPJ Connectivity
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right TPJ interaction](results/figures/leftAI_rightTPJ_group_interaction.png)
-
-- **Interaction beta:** +1.383
-- **p:** .017
-- **FDR q:** .050
-- **Label:** FDR-threshold exploratory finding
 
 Left AI-seeded Right TPJ connectivity showed a similar positive group
 interaction estimate. Because the FDR q value was at the .05 threshold, this
