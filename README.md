@@ -35,7 +35,6 @@ We use fMRI connectivity analysis to ask whether reduced loneliness is related t
 
 ![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
 
-
 The primary public contrast is **Other Fear Anticipation > Other Safety**.
 Loneliness reduction is defined as `T1 - T2`, so positive values indicate
 decreased loneliness after training.
