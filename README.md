@@ -174,6 +174,8 @@ reflecting a general increase across all tested pathways.
 
 ## Conclusion
 
+![Conclusion linking meditation, loneliness, empathy, and candidate social-cognitive pathways](docs/assets/conclusion_social_cognitive_pathways.png)
+
 This reanalysis did not identify a simple pooled association between
 loneliness reduction and the AI mentalizing composite across all participants.
 However, the full-sample group interaction analysis indicated that the
