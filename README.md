@@ -6,14 +6,6 @@
 A reproducible gPPI reanalysis of OpenNeuro `ds006243` comparing
 Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 
-**Quick navigation:** [Background](#background) |
-[Research question](#research-question) |
-[Pipeline](#six-step-analysis-pipeline) |
-[Pooled result](#1-no-simple-pooled-relationship-in-the-full-sample) |
-[Pathway summary](#3-which-pathways-show-the-strongest-group-dependent-slopes) |
-[Conclusion](#conclusion) |
-[Discussion](#discussion)
-
 ## Background
 
 One possible way to reduce loneliness is meditation. In particular,
