@@ -131,16 +131,6 @@ The strongest positive interaction estimates were concentrated in Left
 AI-seeded connectivity with Right STS and Right TPJ. Other tested pathways had
 confidence intervals overlapping zero.
 
-> **How to read this figure**
->
-> - **Dot:** estimated group interaction beta.
-> - **Horizontal line:** 95% confidence interval.
-> - **Vertical zero line:** no difference in LKM and PMR slopes.
-> - **Interval not crossing zero:** evidence for a slope difference.
->
-> An interval crossing zero means there was no clear evidence of a group slope
-> difference in the tested model, not proof of no effect.
-
 ### 4. Main Exploratory Pathway: Left AI-Seeded Right STS Connectivity
 
 The forest plot identified Left AI-seeded Right STS connectivity as the
