@@ -3,7 +3,10 @@
 > **Do you feel lonely? When loneliness decreases, do people simply feel
 > better—or does their brain become better at connecting with other people?**
 
-A reproducible gPPI reanalysis of OpenNeuro `ds006243` comparing
+A reproducible gPPI reanalysis of
+[OpenNeuro ds006243](https://openneuro.org/datasets/ds006243/versions/1.1.2)
+examining whether loneliness reduction is related to task-dependent
+connectivity, and whether this relationship differs between
 Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 
 ## Background
@@ -63,9 +66,6 @@ reduction and connectivity differs between LKM and PMR in the full sample.
 gPPI estimates task-dependent functional connectivity. “Left AI-seeded
 connectivity with Right STS” describes the seed used to estimate connectivity;
 it does not imply causal influence.
-
-**No raw BOLD data, NIfTI maps, masks, or participant-level derivatives are
-committed to this repository.**
 
 ## Results
 
@@ -171,34 +171,12 @@ reflecting a general increase across all tested pathways.
 
 ## Conclusion
 
-This reanalysis did not identify a simple pooled association between
-loneliness reduction and the AI mentalizing composite across all participants.
-However, the full-sample group interaction analysis indicated that the
-connectivity-loneliness relationship differed between LKM and PMR for two
-candidate Left AI-seeded pathways: Right STS and, at the FDR threshold, Right
-TPJ.
+![Conclusion linking meditation, loneliness, empathy, and candidate social-cognitive pathways](docs/assets/conclusion_social_cognitive_pathways.png)
 
-Conceptually, the findings are consistent with the possibility that changes
-in loneliness after LKM may be related to task-dependent coupling between
-affective-salience processing and social-cognitive processing during
-anticipation of another person's possible pain.
-
-The contribution of this repository is therefore twofold: it provides a
-transparent gPPI workflow, and it identifies specific candidate pathways for
-confirmatory follow-up.
-
-**Take-home message**
-
-1. A pooled null association can mask group-dependent brain-behavior
-   relationships.
-2. Left AI-seeded connectivity with Right STS was the strongest FDR-corrected
-   exploratory interaction.
-3. Reproducible code makes the full path from public data to group interaction
-   test inspectable.
-
-## Discussion
-
-These findings are FDR-corrected within the tested interaction family, but
-they remain exploratory because the highlighted ROI pairs were prioritized
-after preliminary inspection of the same dataset. They are
-hypothesis-generating and require preregistered or independent replication.
+1. Meditation was associated with reduced loneliness, but not with a simple
+   overall increase in empathy-related connectivity.
+2. The relationship between loneliness reduction and social-cognitive
+   connectivity differed between LKM and PMR.
+3. Reduced loneliness after LKM may involve more specific communication
+   between affective and social-cognitive systems, rather than a general
+   increase in empathy.
