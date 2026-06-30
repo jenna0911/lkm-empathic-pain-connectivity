@@ -35,7 +35,7 @@ We use fMRI connectivity analysis to ask whether reduced loneliness is related t
 
 ![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
 
-Loneliness reduction may involve not only emotional empathy, but also communication between emotional and social-cognitive brain networks.
+Loneliness reduction may involve communication between affective-empathy and social-cognitive brain networks.
 
 
 ## Six-Step Analysis Pipeline
