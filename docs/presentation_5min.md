@@ -5,9 +5,7 @@ slopes, then to the formal full-sample interaction test.
 
 ## Opening Question
 
-**What to show:** “Do you feel lonely? When loneliness decreases, do people
-simply feel better—or does their brain become better at connecting with other
-people?”
+**What to show:** “Do you feel lonely?”
 
 **Speaker notes:** A pooled analysis assumes that one brain-behavior
 relationship can describe all participants. Before comparing groups, we first
