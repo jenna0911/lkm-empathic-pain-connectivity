@@ -173,27 +173,10 @@ reflecting a general increase across all tested pathways.
 
 ![Conclusion linking meditation, loneliness, empathy, and candidate social-cognitive pathways](docs/assets/conclusion_social_cognitive_pathways.png)
 
-This reanalysis did not identify a simple pooled association between
-loneliness reduction and the AI mentalizing composite across all participants.
-However, the full-sample group interaction analysis indicated that the
-connectivity-loneliness relationship differed between LKM and PMR for two
-candidate Left AI-seeded pathways: Right STS and, at the FDR threshold, Right
-TPJ.
-
-Conceptually, the findings are consistent with the possibility that changes
-in loneliness after LKM may be related to task-dependent coupling between
-affective-salience processing and social-cognitive processing during
-anticipation of another person's possible pain.
-
-The contribution of this repository is therefore twofold: it provides a
-transparent gPPI workflow, and it identifies specific candidate pathways for
-confirmatory follow-up.
-
-**Take-home message**
-
-1. A pooled null association can mask group-dependent brain-behavior
-   relationships.
-2. Left AI-seeded connectivity with Right STS was the strongest FDR-corrected
-   exploratory interaction.
-3. Reproducible code makes the full path from public data to group interaction
-   test inspectable.
+1. Meditation was associated with reduced loneliness, but not with a simple
+   overall increase in empathy-related connectivity.
+2. The relationship between loneliness reduction and social-cognitive
+   connectivity differed between LKM and PMR.
+3. Reduced loneliness after LKM may involve more specific communication
+   between affective and social-cognitive systems, rather than a general
+   increase in empathy.
