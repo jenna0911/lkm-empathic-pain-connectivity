@@ -122,7 +122,7 @@ a group slope difference.
 ![Exploratory interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
 
 The strongest positive interaction estimates were concentrated in Left
-AI-seeded connectivity with Right STS and Right TPJ. Other tested pathways had
+AI-seeded connectivity with Right Superior Temporal Sulcus （STS） and Right Temporoparietal Junction (TPJ). Other tested pathways had
 confidence intervals overlapping zero.
 
 ### 4. Main Exploratory Pathway: Left AI-Seeded Right STS Connectivity
