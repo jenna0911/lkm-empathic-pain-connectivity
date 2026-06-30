@@ -67,9 +67,6 @@ gPPI estimates task-dependent functional connectivity. “Left AI-seeded
 connectivity with Right STS” describes the seed used to estimate connectivity;
 it does not imply causal influence.
 
-**No raw BOLD data, NIfTI maps, masks, or participant-level derivatives are
-committed to this repository.**
-
 ## Results
 
 The public results first examine whether loneliness reduction is related to a
@@ -200,10 +197,3 @@ confirmatory follow-up.
    exploratory interaction.
 3. Reproducible code makes the full path from public data to group interaction
    test inspectable.
-
-## Discussion
-
-These findings are FDR-corrected within the tested interaction family, but
-they remain exploratory because the highlighted ROI pairs were prioritized
-after preliminary inspection of the same dataset. They are
-hypothesis-generating and require preregistered or independent replication.
