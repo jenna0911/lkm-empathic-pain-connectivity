@@ -167,10 +167,5 @@ reflecting a general increase across all tested pathways.
 
 ![Conclusion linking meditation, loneliness, empathy, and candidate social-cognitive pathways](docs/assets/conclusion_social_cognitive_pathways.png)
 
-1. Meditation was associated with reduced loneliness, but not with a simple
-   overall increase in empathy-related connectivity.
-2. The relationship between loneliness reduction and social-cognitive
-   connectivity differed between LKM and PMR.
-3. Reduced loneliness after LKM may involve more specific communication
-   between affective and social-cognitive systems, rather than a general
-   increase in empathy.
+Reduced loneliness after LKM may involve more specific communication
+   between affective empathy and social-cognitive systems in Left AI-Right STS and Left AI-Right STS .
