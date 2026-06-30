@@ -11,7 +11,7 @@ connectivity.
 ## Background
 
 One possible way to reduce loneliness is meditation. In particular,
-loving-kindness meditation, or LKM, is designed to increase warm and positive
+loving-kindness meditation (LKM), is designed to increase warm and positive
 feelings toward oneself and others.
 
 ![Meditation may reduce loneliness and support empathy](docs/assets/meditation_loneliness_empathy.png)
