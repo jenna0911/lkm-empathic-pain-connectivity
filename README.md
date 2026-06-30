@@ -21,10 +21,6 @@ respond to social information, but also to how affective-empathy and
 social-cognitive systems communicate during anticipation of another person's
 pain.
 
-The dataset contains an empathic-pain task collected after LKM or PMR
-training. This project asks whether reductions in loneliness are related to
-task-dependent functional connectivity, and whether that relationship differs
-between the two training groups.
 
 ## Original Paper vs This Reanalysis
 
