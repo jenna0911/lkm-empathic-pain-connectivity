@@ -1,121 +1,131 @@
 # Five-Minute Presentation Guide
 
-The story moves from a pooled null result to the possibility of opposing group
-slopes, then to the formal full-sample interaction test.
+The presentation moves from the pooled result to the pathway summary, then
+uses the two ROI scatter plots to explain the strongest candidate
+interactions.
 
-## Opening Question
+## 0:00-0:35
 
-**What to show:** “Do you feel lonely?”
+**Slide title:** Does reduced loneliness follow one shared neural relationship?
 
-**Speaker notes:** A pooled analysis assumes that one brain-behavior
-relationship can describe all participants. Before comparing groups, we first
-ask whether loneliness reduction has a simple overall association with
-connectivity.
+**What to show:** The opening research question.
 
-**Interaction question:** “Would you expect one shared relationship across
-both training groups?”
+**Speaker notes:** Begin by asking whether one brain-behavior relationship can
+describe everyone whose loneliness decreases. The alternative is that the
+relationship may differ between LKM and PMR.
 
-## Original Paper vs This Reanalysis
+**Audience prompt:** “Would you expect one shared neural relationship across
+both groups?”
 
-**What to show:** The README comparison table.
+## 0:35-1:05
+
+**Slide title:** Original paper versus this reanalysis
+
+**What to show:** The README comparison table: pattern similarity versus
+task-dependent connectivity.
 
 **Speaker notes:** The original study examined self-other pattern similarity
-during pain and fearful anticipation. This reanalysis instead examines
-task-dependent communication between affective-empathy and social-cognitive
-regions.
+during pain and fearful anticipation. This reanalysis examines whether
+affective-empathy and social-cognitive regions show task-dependent
+connectivity related to loneliness reduction.
 
-**Interaction question:** “Does similar activation necessarily mean stronger
-functional connectivity?”
+**Audience prompt:** “Does similar activation necessarily mean stronger
+connectivity?”
 
-## Pooled AI Mentalizing Composite
+## 1:05-1:35
 
-**What to show:** `ai_mentalizing_composite_pooled.png`.
+**Slide title:** No simple pooled association
+
+**What to show:** `pooled_AI_mentalizing_composite.png`.
 
 **Speaker notes:** Across all 54 participants, the pooled association was near
 zero: Spearman rho = -0.098, p = .480, model q = .236. The figure uses one
-color and one regression line because this step deliberately ignores group.
-The null pooled result does not show that the groups have identical slopes.
+regression line and does not separate LKM from PMR.
 
-**Interaction question:** “What information might be hidden when everyone is
-fit with one line?”
+**Audience prompt:** “What might a single pooled line hide?”
 
-## Why a Null Pooled Result May Hide Structure
+## 1:35-2:05
 
-**What to show:** One positive and one negative schematic line converging on a
-near-flat pooled line.
-
-**Speaker notes:** If LKM has a positive fitted slope and PMR has a negative
-fitted slope, combining both groups can produce a near-zero overall
-association. Therefore, a pooled null result does not rule out group-dependent
-relationships.
-
-**Interaction question:** “If the pooled relationship is near zero, does that
-mean there is no effect?” Answer: “Not necessarily. Opposite group slopes can
-cancel each other.”
-
-## Full-Sample Interaction Model
+**Slide title:** Why test a group interaction?
 
 **What to show:**
 
 ```text
 gPPI connectivity ~ loneliness reduction x group
-N = 54; LKM = 29; PMR = 25
 ```
 
-**Speaker notes:** This model uses all 54 participants simultaneously. The
-interaction term tests whether the connectivity-loneliness slope differs
-between LKM and PMR. It does not test whether one group has higher average
-connectivity.
+**Speaker notes:** A near-zero pooled association does not necessarily mean
+there is no group-dependent pattern. Opposite fitted slopes can cancel when
+groups are combined. The interaction term formally tests whether the slopes
+differ.
 
-**Interaction question:** “Which term formally tests whether the two slopes
-differ?” Answer: “The loneliness reduction x group interaction.”
+**Audience prompt:** “Can a pooled null result coexist with two different
+group slopes?”
 
-## Left AI-Right STS Interaction
+## 2:05-2:40
 
-**What to show:** `leftAI_rightSTS_group_interaction.png`.
-
-**Speaker notes:** Report the full-sample interaction first: beta = +1.414,
-p = .005, FDR q = .029. Then explain that the positive LKM and negative PMR
-lines visualize the fitted slope difference. The inferential evidence comes
-from the full-sample interaction term, not two separate group tests.
-
-**Interaction question:** “Does this plot show that LKM had higher connectivity
-overall?” Answer: “No; it shows different fitted slopes.”
-
-## Left AI-Right TPJ Interaction
-
-**What to show:** `leftAI_rightTPJ_group_interaction.png`.
-
-**Speaker notes:** A similar interaction pattern appeared for Right TPJ:
-beta = +1.383, p = .017, FDR q = .050. Because q is at the .05 threshold,
-describe this finding cautiously and explicitly as exploratory.
-
-**Interaction question:** “How would you describe a result exactly at the FDR
-threshold?”
-
-## Tested Pathways
+**Slide title:** Which pathways merit closer inspection?
 
 **What to show:** `interaction_beta_forest_plot.png`.
 
-**Speaker notes:** The strongest positive estimates were for Left AI-seeded
-connectivity with Right STS and Right TPJ. Other tested pathways had
-confidence intervals overlapping zero and are not presented as significant
-findings.
+**Speaker notes:** Each dot is an interaction beta, each horizontal line is a
+95% confidence interval, and the vertical line marks zero slope difference.
+The strongest positive estimates were concentrated in Left AI-seeded
+connectivity with Right STS and Right TPJ, so those pathways are shown next.
 
-**Interaction question:** “Which pathway would you prioritize for
-preregistered replication?”
+**Audience prompt:** “What does it mean when a confidence interval crosses
+zero?”
 
-## Transparent Analysis
+## 2:40-3:30
 
-**What to show:** The six-step vertical Mermaid pipeline and the exploratory
-caveat.
+**Slide title:** Main pathway: Left AI-seeded Right STS connectivity
 
-**Speaker notes:** The repository documents events, confounds, first-level
-design, seed time series, gPPI fitting, and the final group interaction model.
-Raw imaging and participant-level derivatives remain local. These findings are
-hypothesis-generating and require preregistered or independent replication.
+**What to show:** `leftAI_rightSTS_group_interaction.png`.
 
-**Interaction question:** “Which step would you audit first?”
+**Speaker notes:** State the full-sample interaction first: beta = +1.414,
+p = .005, FDR q = .029. Then explain that the positive LKM and negative PMR
+lines visualize the fitted slope difference. The statistical test is the
+interaction term, not separate within-group correlations.
 
-**Closing line:** “This repository makes the full pathway from OpenNeuro data
-to group interaction test transparent and reproducible.”
+**Audience prompt:** “Does this result mean LKM had higher connectivity
+overall?”
+
+## 3:30-4:00
+
+**Slide title:** Related pathway: Left AI-seeded Right TPJ connectivity
+
+**What to show:** `leftAI_rightTPJ_group_interaction.png`.
+
+**Speaker notes:** The interaction estimate was beta = +1.383, p = .017, with
+FDR q = .050. This right TPJ finding is at the FDR threshold and should be
+described cautiously as exploratory.
+
+**Audience prompt:** “How should a finding exactly at the FDR threshold be
+reported?”
+
+## 4:00-4:30
+
+**Slide title:** Conclusion
+
+**What to show:** The three-point take-home message.
+
+**Speaker notes:** A pooled null association can mask group-dependent slopes.
+The strongest candidate pathway involved Left AI-seeded connectivity with
+Right STS, with Right TPJ as a related threshold-level finding. The candidate
+targets are right-lateralized social-cognitive regions.
+
+**Audience prompt:** “Which pathway would you carry forward as primary?”
+
+## 4:30-5:00
+
+**Slide title:** Discussion and caveat
+
+**What to show:** The limitations and next-step bullets.
+
+**Speaker notes:** The findings are correlational, exploratory, and do not
+establish causal influence or intervention superiority. The ROI pairs were
+prioritized after preliminary inspection, so independent or preregistered
+replication is required.
+
+**Audience prompt:** “What would you preregister as the primary pathway for
+replication, and why?”

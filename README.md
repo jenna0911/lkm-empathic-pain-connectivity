@@ -9,8 +9,10 @@ Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 [Research question](#research-question) |
 [Pipeline](#six-step-analysis-pipeline) |
 [Pooled result](#1-no-simple-pooled-relationship-in-the-full-sample) |
-[Group interaction results](#2-why-test-a-group-interaction) |
-[Caveats](#6-exploratory-caveat)
+[Pathway summary](#3-which-pathways-show-the-strongest-group-dependent-slopes) |
+[Conclusion](#conclusion) |
+[Discussion](#discussion) |
+[Caveats](#exploratory-caveat)
 
 ## Background
 
@@ -80,14 +82,14 @@ simple pooled connectivity measure across all 54 participants. We then test
 whether this relationship differs between LKM and PMR.
 
 - **Full sample:** N = 54
-- **LKM:** 29
-- **PMR:** 25
+- **LKM:** n = 29
+- **PMR:** n = 25
 - **Contrast:** Other Fear Anticipation > Other Safety
 - **Status:** All reported findings are exploratory.
 
 ### 1. No Simple Pooled Relationship in the Full Sample
 
-![No simple pooled association for the AI mentalizing composite](results/figures/ai_mentalizing_composite_pooled.png)
+![No simple pooled association for the AI mentalizing composite](results/figures/pooled_AI_mentalizing_composite.png)
 
 Across all 54 participants, loneliness reduction was not associated with the
 AI mentalizing composite:
@@ -97,8 +99,9 @@ AI mentalizing composite:
 - **Model q:** .236
 
 This suggests that a single pooled brain-behavior relationship may not
-adequately describe both meditation groups. **This null pooled association
-does not mean the groups have identical relationships.**
+adequately describe both meditation groups. This pooled null result motivates
+testing whether the two meditation groups show different brain-behavior
+slopes.
 
 ### 2. Why Test a Group Interaction?
 
@@ -115,33 +118,59 @@ gPPI connectivity ~ loneliness reduction x group
   loneliness.
 - **Group:** LKM versus PMR.
 - **Interaction:** tests whether the loneliness-connectivity slopes differ
-  between the two groups.
+  between groups.
 
 We are not asking whether LKM had higher connectivity on average. We are
 asking whether the connectivity-loneliness relationship had different slopes
 in LKM and PMR.
 
-### 3. Full-Sample Group Interaction: Left AI-Seeded Right STS Connectivity
+### 3. Which Pathways Show the Strongest Group-Dependent Slopes?
+
+Before interpreting individual scatter plots, we first examined the full set
+of tested ROI pathways. The forest plot summarizes the estimated group
+interaction effect for each pathway. Positive values indicate that the
+loneliness reduction-connectivity slope was relatively more positive in LKM
+than in PMR; confidence intervals crossing zero indicate no clear evidence of
+a group slope difference.
+
+![Exploratory interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
+
+The strongest positive interaction estimates were concentrated in Left
+AI-seeded connectivity with Right STS and Right TPJ. Other tested pathways had
+confidence intervals overlapping zero.
+
+> **How to read this figure**
+>
+> - **Dot:** estimated group interaction beta.
+> - **Horizontal line:** 95% confidence interval.
+> - **Vertical zero line:** no difference in LKM and PMR slopes.
+> - **Interval not crossing zero:** evidence for a slope difference.
+>
+> An interval crossing zero means there was no clear evidence of a group slope
+> difference in the tested model, not proof of no effect.
+
+### 4. Main Exploratory Pathway: Left AI-Seeded Right STS Connectivity
+
+The forest plot identified Left AI-seeded Right STS connectivity as the
+strongest positive group interaction estimate.
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right STS interaction](results/figures/leftAI_rightSTS_group_interaction.png)
-
-*Full-sample group interaction model, N = 54. LKM and PMR are shown separately
-only to visualize the interaction.*
 
 - **Interaction beta:** +1.414
 - **p:** .005
 - **FDR q:** .029
 - **Contrast:** Other Fear Anticipation > Other Safety
+- **Model:** Full-sample interaction, N = 54
 
-The interaction was significant after FDR correction. This indicates that the
-association between loneliness reduction and Left AI-seeded Right STS
-connectivity differed between LKM and PMR.
+The FDR-corrected interaction indicates that the relationship between
+loneliness reduction and Left AI-seeded Right STS connectivity differed
+between LKM and PMR.
 
-In the fitted model, the LKM slope was positive and the PMR slope was negative.
-These separate lines explain the interaction; the inferential test is the
-full-sample interaction term. **LKM and PMR showed different fitted slopes.**
+In the fitted full-sample model, the LKM line was positive and the PMR line was
+negative. These lines visualize the interaction; the statistical test is the
+interaction term, not separate within-group correlations.
 
-### 4. Full-Sample Group Interaction: Left AI-Seeded Right TPJ Connectivity
+### 5. Related Exploratory Pathway: Left AI-Seeded Right TPJ Connectivity
 
 ![Exploratory full-sample Left AI-seeded connectivity with Right TPJ interaction](results/figures/leftAI_rightTPJ_group_interaction.png)
 
@@ -150,27 +179,83 @@ full-sample interaction term. **LKM and PMR showed different fitted slopes.**
 - **FDR q:** .050
 - **Label:** FDR-threshold exploratory finding
 
-A similar group-dependent slope pattern was observed for Left AI-seeded Right
-TPJ connectivity. Because the FDR q value was at the .05 threshold, this
-result should be interpreted cautiously.
+Left AI-seeded Right TPJ connectivity showed a similar positive group
+interaction estimate. Because the FDR q value was at the .05 threshold, this
+finding should be interpreted cautiously.
 
-### 5. Summary Across Tested Pathways
+Together, Right STS and Right TPJ suggest that the candidate effects were
+concentrated in right-lateralized social-cognitive targets, rather than
+reflecting a general increase across all tested pathways.
 
-![Exploratory interaction beta forest plot](results/figures/interaction_beta_forest_plot.png)
+## Conclusion
 
-The forest plot summarizes candidate group interaction effects. The strongest
-positive interaction estimates were observed for Left AI-seeded connectivity
-with Right STS and Right TPJ. Other pathways had confidence intervals
-overlapping zero.
+This reanalysis did not identify a simple pooled association between
+loneliness reduction and the AI mentalizing composite across all participants.
+However, the full-sample group interaction analysis indicated that the
+connectivity-loneliness relationship differed between LKM and PMR for two
+candidate Left AI-seeded pathways: Right STS and, at the FDR threshold, Right
+TPJ.
 
-### 6. Exploratory Caveat
+Conceptually, the findings are consistent with the possibility that changes
+in loneliness after LKM may be related to task-dependent coupling between
+affective-salience processing and social-cognitive processing during
+anticipation of another person's possible pain.
+
+The contribution of this repository is therefore twofold: it provides a
+transparent gPPI workflow, and it identifies specific candidate pathways for
+confirmatory follow-up.
+
+**Take-home message**
+
+1. A pooled null association can mask group-dependent brain-behavior
+   relationships.
+2. Left AI-seeded connectivity with Right STS was the strongest FDR-corrected
+   exploratory interaction.
+3. Reproducible code makes the full path from public data to group interaction
+   test inspectable.
+
+## Discussion
+
+### What May This Mean?
+
+Left AI is often associated with affective salience and
+interoceptive-affective processing. Right STS and Right TPJ are commonly
+implicated in social perception, mentalizing, and perspective-taking. The
+observed pattern is therefore consistent with different links between
+affective-empathy and social-cognitive systems in LKM and PMR.
+
+### What Does This Not Mean?
+
+- It does not establish that LKM caused the connectivity change.
+- It does not establish that Left AI causally drives Right STS or Right TPJ.
+- It does not show that LKM participants had higher connectivity overall.
+- It does not prove that one intervention is superior to the other.
+- It does not establish a clinical treatment mechanism.
+
+### Key Limitations
+
+- The highlighted ROI pairs were prioritized after preliminary inspection of
+  the same dataset.
+- FDR correction was applied within the tested interaction family, but it does
+  not eliminate all researcher degrees of freedom.
+- The results are correlational and do not establish mediation or causal
+  direction.
+- The sample size is modest for stable brain-behavior interaction estimates.
+- Independent replication or preregistration is needed.
+
+### Next Steps
+
+1. Preregister Left AI-seeded Right STS as the primary replication pathway.
+2. Treat Left AI-seeded Right TPJ as a secondary replication pathway.
+3. Test whether baseline loneliness, motion, or other covariates alter the
+   interaction.
+4. Use an independent sample or held-out validation strategy.
+5. Examine whether the connectivity pathway predicts behavioral empathy or
+   social functioning outcomes.
+
+## Exploratory Caveat
 
 > **These findings are FDR-corrected within the tested interaction family, but
 > they remain exploratory because the highlighted ROI pairs were prioritized
 > after preliminary inspection of the same dataset. They are
 > hypothesis-generating and require preregistered or independent replication.**
-
-## Discussion Prompt
-
-> **If the pooled relationship is near zero but the group interaction is
-> nonzero, what should the next preregistered study test?**
