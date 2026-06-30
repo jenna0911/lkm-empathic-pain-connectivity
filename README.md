@@ -14,6 +14,12 @@ Loving-Kindness Meditation (LKM) and Progressive Muscle Relaxation (PMR).
 
 ## Background
 
+One possible way to reduce loneliness is meditation. In particular,
+loving-kindness meditation, or LKM, is designed to increase warm and positive
+feelings toward oneself and others.
+
+![Meditation may reduce loneliness and support empathy](docs/assets/meditation_loneliness_empathy.png)
+
 Loneliness may be related not only to how strongly individual brain regions
 respond to social information, but also to how affective-empathy and
 social-cognitive systems communicate during anticipation of another person's
