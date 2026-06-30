@@ -81,14 +81,10 @@ confirmatory follow-up.
 
 ## Discussion
 
-The pattern is consistent with different links between affective-empathy and
-social-cognitive systems in LKM and PMR. It does not establish causal
-direction, intervention superiority, mediation, or a clinical treatment
-mechanism.
-
-The highlighted ROI pairs were prioritized after preliminary inspection of
-the same dataset. Although FDR correction was applied within the tested
-interaction family, independent or preregistered replication is needed.
+These findings are FDR-corrected within the tested interaction family, but
+they remain exploratory because the highlighted ROI pairs were prioritized
+after preliminary inspection of the same dataset. They are
+hypothesis-generating and require preregistered or independent replication.
 
 ## Public-Safe Files
 
