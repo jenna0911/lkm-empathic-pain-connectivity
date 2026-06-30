@@ -97,15 +97,6 @@ def load_events(events_tsv: Path) -> pd.DataFrame:
     return pd.read_csv(events_tsv, sep="\t")
 
 
-def prepare_phase_events(events: pd.DataFrame, include_rest: bool = True) -> pd.DataFrame:
-    """Collapse ds006243 event rows into gPPI task regressors.
-
-    This compatibility wrapper delegates to :func:`collapse_events_for_gppi`.
-    """
-
-    return collapse_events_for_gppi(events, include_rest=include_rest)
-
-
 def collapse_events_for_gppi(events: pd.DataFrame, include_rest: bool = True) -> pd.DataFrame:
     """Create collapsed gPPI regressors from one BIDS events table.
 
