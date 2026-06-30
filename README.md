@@ -35,9 +35,6 @@ We use fMRI connectivity analysis to ask whether reduced loneliness is related t
 
 ![Research question linking meditation, loneliness, empathy, and social-cognitive function](docs/assets/research_question_social_cognition.png)
 
-> **Does reduced loneliness follow one shared neural relationship across
-> everyone, or does the connectivity-loneliness relationship differ between
-> LKM and PMR?**
 
 The primary public contrast is **Other Fear Anticipation > Other Safety**.
 Loneliness reduction is defined as `T1 - T2`, so positive values indicate
