@@ -20,7 +20,7 @@ Loneliness may be related not only to how strongly individual brain regions
 respond to social information, but also to how affective-empathy and
 social-cognitive systems communicate during anticipation of another person's
 pain.
-We use fMRI connectivity analysis to ask whether reduced loneliness is related to better communication between brain systems for emotion and social understanding.
+We use fMRI connectivity analysis to ask whether reduced loneliness is related to better communication between brain systems for empathy and social understanding.
 
 ## Original Paper vs This Reanalysis
 
